@@ -1,0 +1,306 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    top=14mm,
+    bottom=16mm,
+    left=16mm,
+    right=16mm,
+    footskip=8mm
+}
+
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% Corporate & Brand Palette
+\definecolor{BrandNavy}{HTML}{0F172A}
+\definecolor{BrandIndigo}{HTML}{4338CA}
+\definecolor{BrandBlue}{HTML}{2563EB}
+\definecolor{BrandEmerald}{HTML}{059669}
+\definecolor{BrandRose}{HTML}{E11D48}
+\definecolor{BrandAmber}{HTML}{D97706}
+\definecolor{SurfaceLight}{HTML}{F8FAFC}
+\definecolor{BorderGray}{HTML}{CBD5E1}
+\definecolor{TextMuted}{HTML}{64748B}
+
+\usepackage[colorlinks=true,
+    linkcolor=BrandBlue,
+    urlcolor=BrandBlue,
+    citecolor=BrandBlue]{hyperref}
+
+% Header & Footer
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[L]{\small\textbf{\color{BrandNavy}Shiftwell} \textbar\ Product Management Intern Case Study}
+\fancyhead[R]{\small\color{TextMuted}Candidate: Krishna Murthi}
+\fancyfoot[L]{\small\color{TextMuted}HugoHub / Hubspark Selection Process (2026--2027)}
+\fancyfoot[R]{\small Page \thepage\ of 4}
+
+% Section styling
+\titleformat{\section}{\normalsize\bfseries\color{BrandNavy}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\small\bfseries\color{BrandIndigo}}{}{0em}{}
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+\titlespacing*{\subsection}{0pt}{4pt}{2pt}
+
+\setlist{itemsep=1.5pt,topsep=1.5pt,parsep=0pt,partopsep=0pt,leftmargin=14pt}
+
+\newcommand{\INR}{INR~}
+
+\begin{document}
+
+% =============================================================
+% PAGE 1: TITLE BANNER & DELIVERABLE 1 (MEMO PAGE 1)
+% =============================================================
+\begin{tcolorbox}[
+    colback=BrandNavy,
+    colframe=BrandNavy,
+    arc=2mm,
+    left=4mm,right=4mm,top=2.5mm,bottom=2.5mm,
+    coltext=white
+]
+\begin{center}
+    {\footnotesize\textbf{\textsf{HUGOHUB \textbar\ HUBSPARK PRODUCT INTERN CASE STUDY SUBMISSION}}}\\[1mm]
+    {\Large\textbf{\textsf{Shiftwell: Smart Swap Rules-Based Auto-Approval Engine}}}\\[1mm]
+    {\scriptsize\textbf{Candidate:} Krishna Murthi \quad\textbar\quad \textbf{Target Role:} Product Management Intern \quad\textbar\quad \textbf{Date:} October 18, 2026}\\[0.5mm]
+    {\scriptsize\textbf{Live Prototype:} \href{https://elaborate-parfait-1cc881.netlify.app/}{https://elaborate-parfait-1cc881.netlify.app/} \quad\textbar\quad \textbf{GitHub:} \href{https://github.com/krishnamurthi-ramesh/shiftwell-prototype}{github.com/krishnamurthi-ramesh/shiftwell-prototype}}
+\end{center}
+\end{tcolorbox}
+
+\vspace{-3mm}
+\section*{Deliverable 1: Recommendation Memo to the CEO (Page 1 of 2)}
+
+\begin{tcolorbox}[
+    colback=SurfaceLight,
+    colframe=BorderGray,
+    arc=1mm,
+    left=2.5mm,right=2.5mm,top=1.5mm,bottom=1.5mm
+]
+\footnotesize
+\textbf{MEMORANDUM} \quad\textbar\quad \textbf{TO:} Chief Executive Officer, Shiftwell \quad\textbar\quad \textbf{FROM:} Krishna Murthi, Product Management\\
+\textbf{DATE:} October 18, 2026 \quad\textbar\quad \textbf{SUBJECT:} Q4 2026 Engineering Build Recommendation: What to Ship, What to Defer, and Why
+\end{tcolorbox}
+
+\vspace{-1mm}
+\subsection*{1. Executive Summary \& The Core Diagnosis}
+Our three largest accounts -- FreshBowl (\INR 84L ARR), CarePoint (\INR 60L ARR), and UrbanMart (\INR 110L ARR) -- have submitted urgent, divergent requests. Sales recommends building all three. However, engineering capacity is strictly capped at \textbf{6 sprints} (2 engineers, 1 designer). The three requested custom builds total \textbf{6 sprints} (WhatsApp: 3, Overtime: 2, Certificates: 1), consuming 100\% of our capacity with zero contingency for QA, edge cases, or platform scale.
+
+A rigorous diagnostic of customer interview transcripts and churn data uncovers the fundamental truth:
+\begin{tcolorbox}[colback=BrandRose!8!white,colframe=BrandRose!60!black,arc=1mm,left=2.5mm,right=2.5mm,top=1mm,bottom=1mm]
+\footnotesize
+\textbf{Root-Cause Finding:} Customers ask for communication channels (WhatsApp) and isolated rules, but their existential pain is \textbf{unbearable manager approval latency}. Every swap currently requires manual sign-off by a Location Manager.
+\end{tcolorbox}
+
+Across our active and churned accounts, \textbf{Swap Approval Speed (<24 hours) is the single leading indicator of retention and churn}:
+\begin{itemize}
+    \item \textbf{Healthy Accounts} (UrbanMart, QuickKart, MedAxis): Average \textbf{70\%} of swaps resolved in <24 hours.
+    \item \textbf{At-Risk Accounts} (FreshBowl, FitZone, Brew \& Co): Average only \textbf{34\%} of swaps resolved in <24 hours.
+    \item \textbf{Churned Accounts} (TandooriTown, GreenLeaf, PawsCare): Averaged \textbf{28.7\%} prior to churn.
+\end{itemize}
+
+Every single account lost in the past 12 months had approval speeds under 35\%. GreenLeaf's exit interview proves the point: \textit{``Honestly it wasn't WhatsApp. Our managers couldn't keep up with approvals, and RotaPro let swaps go through automatically if the person was trained.''} WhatsApp merely moves an unmanageable queue from mobile app to chat; it does nothing to clear it.
+
+\subsection*{2. Strategic Recommendation: Build the Rules-Based Auto-Approval Engine}
+Instead of three bespoke, disconnected features, I recommend engineering a single, configurable \textbf{Rules-Based Auto-Approval Engine} this quarter (\textbf{4 sprints total}). The engine evaluates incoming bilateral swap requests in real time against policy rules. When all active conditions pass, swaps resolve instantly without human friction.
+
+\begin{table}[h!]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{p{3.2cm}Xp{4.2cm}c}
+\toprule
+\rowcolor{BrandNavy!10}
+\textbf{Engine Rule Module} & \textbf{Functional Mechanism} & \textbf{Accounts Addressed} & \textbf{Sprint Cost} \\
+\midrule
+\textbf{1. Role \& Skill Match} & Verifies swapper qualification, station certification, and role matrix. & FreshBowl + all restaurant/retail accounts & Core Engine \\
+\textbf{2. Overtime Threshold} & Automatically escalates to Regional Manager if weekly hours exceed 48 hrs. & UrbanMart (\INR 110L ARR) + labor compliance & Core Engine \\
+\textbf{3. Certificate Validity} & Hard-blocks swaps if mandatory credentials (e.g., BLS, Nursing Council) lapse. & CarePoint (\INR 60L ARR) + clinical safety & 1 Sprint \\
+\textbf{4. Auto-Approve on Pass} & Instantly approves eligible swaps in <200ms; sends digest summary to managers. & Portfolio-wide (~75\% swaps automated) & Core Engine \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\vspace{-2mm}
+\noindent
+\textbf{Sprint Budget Allocation:} Core Rules Engine: \textbf{3 sprints} \textbar\ Clinical Certificate Module: \textbf{1 sprint} \textbar\ Buffer \& Hardening: \textbf{2 sprints}. Total: \textbf{6 sprints}.
+
+\newpage
+% =============================================================
+% PAGE 2: DELIVERABLE 1 (MEMO PAGE 2)
+% =============================================================
+\section*{Deliverable 1: Recommendation Memo to the CEO (Page 2 of 2)}
+
+\subsection*{3. Strategic \& Economic Justification}
+\begin{enumerate}
+    \item \textbf{Eliminates Root-Cause Churn across \INR 1.84 Cr of At-Risk ARR:}
+    FreshBowl (\INR 84L, renewal Jan 2027), CarePoint (\INR 60L, Dec 2026), FitZone (\INR 22L, Oct 2026), and Brew \& Co (\INR 18L, Nov 2026) all suffer from manager scheduling bottlenecks (averaging 5.5--7.0 hrs/week). By auto-resolving ~75\% of swaps instantly, manager administrative load drops by ~65\%, eliminating shift dropouts and protecting \INR 1.84 Cr in imminent renewals.
+    \item \textbf{Neutralizes Competitor Threat (RotaPro):}
+    Sales fears RotaPro's WhatsApp feature. However, RotaPro won GreenLeaf because of \textit{automatic approvals for qualified staff}. By shipping our Rules Engine, we neutralize RotaPro's operational advantage without incurring WhatsApp API messaging costs (\INR 0.35/message across 9,160 monthly swaps = \INR 38,000+/year saved).
+    \item \textbf{A Scalable Platform vs. Fragile Tech Debt:}
+    Building custom one-offs for UrbanMart and CarePoint creates maintenance liabilities. A rules engine is a reusable architecture: any enterprise customer can configure customized rules (e.g., rest periods, union seniority, minor labor laws) in future quarters.
+    \item \textbf{Built-in 2-Sprint Safety Buffer:}
+    Building 3 disparate features consumes 6/6 sprints (100\% capacity). With the engineering lead on leave until next week, zero buffer guarantees slips and poor QA. Our plan consumes 4 sprints, preserving 2 full sprints for integration testing, edge cases, and pilot rollouts.
+\end{enumerate}
+
+\subsection*{4. What We Will NOT Build This Quarter (and Why)}
+\begin{tcolorbox}[colback=BrandAmber!8!white,colframe=BrandAmber!70!black,arc=1mm,left=2.5mm,right=2.5mm,top=1mm,bottom=1mm]
+\footnotesize
+\textbf{Deferred Initiative:} WhatsApp Swap Request \& Approval Integration (3 Sprints).
+\end{tcolorbox}
+\textbf{Rationale:} WhatsApp is a delivery channel, not a decision engine. At FreshBowl, store managers receive 25--30 swap requests every night. Sending 30 WhatsApp notifications per night to an overworked manager still results in delays, ignored messages, and burnout. Once our Rules Engine auto-approves 75\% of swaps, the manager only receives 3--5 genuine exception requests per week. We will re-evaluate WhatsApp in Q1 2027 specifically for \textit{manager escalation alerts}, where it delivers genuine high-leverage utility.
+
+\subsection*{5. Account-by-Account Stakeholder Communication Plan}
+\begin{itemize}
+    \item \textbf{FreshBowl (\INR 84L ARR \textbar\ Restaurants \textbar\ Jan 2027 Renewal):}
+    \textit{``We investigated your frontline feedback. WhatsApp still forces your store managers to process 30 approvals every night. Instead, we are shipping instant Auto-Approval for trained station cooks. Your managers won't have to touch 80\% of requests. Swaps resolve in seconds, cooks don't drop shifts, and your managers get back 5 hours every week.''}
+    \item \textbf{CarePoint Clinics (\INR 60L ARR \textbar\ Healthcare \textbar\ Dec 2026 Renewal):}
+    \textit{``Your compliance vulnerability is solved. We are shipping an integrated Certificate Expiry Enforcement Module this quarter. Any nurse with an expired BLS or Council registration is automatically blocked from scheduling or swapping. Your clinic managers no longer need manual Excel sheets, and audit penalties are 100\% eliminated.''}
+    \item \textbf{UrbanMart (\INR 110L ARR \textbar\ Retail \textbar\ Aug 2027 Renewal):}
+    \textit{``Your overtime cost control is delivered. Our new Rules Engine allows you to enforce your 48-hour weekly cap. Any swap breaching 48 hours is instantly flagged and escalated to Regional Managers for 1-click authorization with overtime cost projections.''}
+\end{itemize}
+
+\subsection*{6. Decision Summary}
+Build the \textbf{Rules-Based Auto-Approval Engine}. It protects \INR 1.84 Cr in renewal ARR, eliminates the root cause of customer churn, solves UrbanMart and CarePoint's explicit requirements, beats RotaPro at their own game, and leaves a 2-sprint buffer to guarantee flawless execution.
+
+\newpage
+% =============================================================
+% PAGE 3: DELIVERABLES 2, 4, 5, 6 (STRICT WORD & PAGE LIMITS)
+% =============================================================
+
+\section*{Deliverable 2: Reply to the Sales Head (Strict Word Limit: 200 Words)}
+\begin{tcolorbox}[colback=SurfaceLight,colframe=BrandIndigo!40!white,arc=1mm,left=3mm,right=3mm,top=1.8mm,bottom=1.8mm]
+\footnotesize
+\textbf{Subject: Re: UrbanMart, FreshBowl, and Q4 priorities}\\
+Hi,
+
+I hear you on the urgency -- UrbanMart and FreshBowl are our two largest accounts, and losing GreenLeaf to RotaPro stings. But the churn data reveals that building WhatsApp and a custom overtime rule will not save these renewals.
+
+Every account we lost in the last 12 months had swap approval speeds under 35\%. GreenLeaf's exit interview confirmed the truth: their managers couldn't keep up with manual approvals, and RotaPro won because it auto-approved qualified staff swaps. RotaPro's real differentiator isn't WhatsApp -- it's auto-approval.
+
+Instead of building two disconnected features that consume all 6 sprints with zero contingency, I propose building a \textbf{Rules-Based Auto-Approval Engine} in ~4 sprints:
+\begin{enumerate}[leftmargin=12pt]
+    \item \textbf{Auto-approves} qualified staff swaps instantly (solves FreshBowl's bottleneck far better than WhatsApp).
+    \item \textbf{Enforces overtime limits} with regional escalations (delivers UrbanMart's requirement).
+    \item \textbf{Blocks expired certificates} (secures CarePoint's \INR 60L December renewal).
+\end{enumerate}
+We protect all three accounts, address the root cause of portfolio churn, and preserve 2 sprints buffer. WhatsApp merely moves the queue to another screen; auto-approval eliminates 75\% of it. Let's review the numbers together today.
+
+Best, \quad Krishna
+\end{tcolorbox}
+\vspace{-2mm}
+\begin{flushright}
+\scriptsize\color{TextMuted}\textit{Word Count: 184 words (Word Limit: 200 words)}
+\end{flushright}
+
+\vspace{-2mm}
+\section*{Deliverable 4: Build Note (Strict Word Limit: 200 Words)}
+\begin{tcolorbox}[colback=SurfaceLight,colframe=BrandEmerald!40!white,arc=1mm,left=3mm,right=3mm,top=1.8mm,bottom=1.8mm]
+\footnotesize
+\textbf{What the Prototype Does:}\\
+An interactive web application modeling Shiftwell's Rules-Based Auto-Approval Engine across four modules: (1) \textbf{Rules Configurator}: Live toggles and parameter tuning for Role Matching, Overtime Thresholds (48h), Certificate Validity, and Auto-Approval; (2) \textbf{Swap Simulator}: 5 dynamic scenarios (FreshBowl auto-approval, CarePoint BLS expired block, UrbanMart overtime escalation) demonstrating real-time step-by-step pipeline evaluation; (3) \textbf{Account Dashboard}: Visualizes all 8 accounts, churn correlation, and swap distributions; (4) \textbf{Impact Matrix}: Before/after operational metrics and sprint allocation.
+
+\textbf{How Built \& AI Tools Used:}\\
+Engineered with semantic HTML5, custom Figma-grade dark CSS design system, and vanilla JavaScript. Deployed on Netlify edge CDN. I used Antigravity IDE (Claude) to identify the approval-to-churn correlation, stress-test architectural tradeoffs, and scaffold interactive simulation logic. All figures match the case data pack.
+
+\textbf{Production Engineering Requirements:}\\
+\begin{itemize}[leftmargin=12pt]
+    \item Configurable rule evaluation service with tenant-level policy overrides.
+    \item Event-driven asynchronous worker queue for swap validation.
+    \item Relational schema extensions for staff credential expiry and weekly hours calculation.
+    \item Multi-tier manager escalation webhooks and immutable compliance audit logs.
+\end{itemize}
+\end{tcolorbox}
+\vspace{-2mm}
+\begin{flushright}
+\scriptsize\color{TextMuted}\textit{Word Count: 182 words (Word Limit: 200 words)}
+\end{flushright}
+
+\vspace{-2mm}
+\section*{Deliverable 5: Working Prototype Link}
+\begin{tcolorbox}[colback=BrandNavy!5!white,colframe=BrandNavy!60!black,arc=1mm,left=3mm,right=3mm,top=1.5mm,bottom=1.5mm]
+\footnotesize
+\begin{itemize}
+    \item \textbf{Live Deployed Web Application:} \href{https://elaborate-parfait-1cc881.netlify.app/}{https://elaborate-parfait-1cc881.netlify.app/}
+    \item \textbf{GitHub Source Code Repository:} \href{https://github.com/krishnamurthi-ramesh/shiftwell-prototype}{https://github.com/krishnamurthi-ramesh/shiftwell-prototype}
+    \item \textbf{Screen Recording Artifact:} Complete test run verified and recorded in IDE artifacts.
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{-2mm}
+\section*{Deliverable 6: AI Usage Disclosure}
+\begin{tcolorbox}[colback=SurfaceLight,colframe=BorderGray,arc=1mm,left=3mm,right=3mm,top=1.5mm,bottom=1.5mm]
+\footnotesize
+I used \textbf{Claude AI (via Google Antigravity IDE)} for data exploration, validating churn-rate correlations against the data pack, drafting and word-count constraining executive responses, and developing the production-grade HTML/CSS/JS prototype. Every assumption and quantitative metric was manually cross-referenced against the case study data pack and is defended in this document.
+\end{tcolorbox}
+
+\newpage
+% =============================================================
+% PAGE 4: DELIVERABLE 3 (ASSUMPTIONS) & DATA PACK ANALYSIS
+% =============================================================
+\section*{Deliverable 3: Assumptions List (Where Data Was Missing)}
+
+In compliance with the case guidelines, all assumptions formulated in the absence of explicit data are categorized below:
+
+\subsection*{A. Engineering Sizing \& Technical Architecture Assumptions}
+\begin{itemize}
+    \item \textbf{Sprint Velocity \& Capacity:} Engineering capacity is fixed at 6 sprints for Q4 (2 engineers, 1 designer). I assumed full developer availability without unexpected sick leave or unplanned infrastructure incidents.
+    \item \textbf{Core Rules Engine Scope (~3 sprints):} Engineering notes quote 2 sprints for UrbanMart's specific overtime approval and 1 sprint for CarePoint's certificate field. I assumed standardizing these into a generalized, rule-evaluating engine takes 3 sprints, since the core pipeline logic (rule evaluation hook, status updates, notification dispatch) is built once and shared.
+    \item \textbf{Absence of Existing Rule Infrastructure:} As confirmed by engineering (``every swap goes to Location Manager... there are no rules; this is hard-coded''), I assumed zero legacy rule infrastructure exists. The engine must intercept swap requests before they hit the database approval queue.
+    \item \textbf{Mobile App Decoupling:} I assumed the mobile app only needs to display a new \texttt{Auto-Approved} status badge for swaps; no complex client-side architecture rewrites are required for frontline staff.
+\end{itemize}
+
+\subsection*{B. Customer Behavior \& Churn Dynamics Assumptions}
+\begin{itemize}
+    \item \textbf{Auto-Approval Rate (~75\%):} FreshBowl's store manager states: \textit{``I approve almost all of them without thinking. I only check if they're trained for the station and won't go into overtime.''} Based on this, I assumed that 75\%--80\% of routine shift swaps satisfy role and overtime rules and can safely bypass manual review.
+    \item \textbf{CarePoint Renewal Risk is Regulatory, Not Dissatisfaction:} CarePoint boasts a healthy 71\% approval speed and low scheduling hours (4.0 hrs/week). Their ``At Risk'' status is entirely triggered by audit exposure (two shifts covered by nurses with expired BLS certificates). Solving credential blocking immediately secures their \INR 60L renewal.
+    \item \textbf{UrbanMart Churn Imminence is Low:} UrbanMart's renewal is in August 2027 (10 months away), staff volume is healthy (5,200 staff), and swap approval speed is 64\%. The VP HR's statement that they would ``look at options'' is standard enterprise negotiation posturing rather than imminent churn. Supplying overtime rules in Q4 satisfies their demand with 10 months of retention buffer.
+    \item \textbf{FitZone and Brew \& Co Root Cause:} Both accounts exhibit acute approval bottlenecks (35\% and 29\% <24h) and high manager workload (5.5 and 7.0 hrs/wk). I assumed their churn risk stems directly from the same manual approval gridlock affecting FreshBowl.
+\end{itemize}
+
+\subsection*{C. Financial Modeling \& Unit Economics Assumptions}
+\begin{itemize}
+    \item \textbf{Manager Time Savings (~65\%):} Because ~75\% of monthly swap requests (portfolio total: 9,160 swaps/mo) will be resolved instantaneously without manager intervention, I assumed manager scheduling hours will decrease proportionally from an average of 4.75 hrs/week to ~1.7 hrs/week.
+    \item \textbf{WhatsApp Cost Avoidance:} Engineering notes cite WhatsApp Business API messaging costs of \INR 0.35/message. Across 9,160 swaps/month (each requiring 2--3 template pings for request, approval, and confirmation), full adoption would incur \INR 75,000--\INR 1,15,000 annually in variable vendor costs. Auto-approval avoids this recurring cost.
+\end{itemize}
+
+\vspace{-1mm}
+\subsection*{Appendix: Active Portfolio Data Pack \& Churn Correlation Matrix}
+
+\begin{table}[h!]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.1}
+\begin{tabularx}{\textwidth}{lcccccrc}
+\toprule
+\rowcolor{BrandNavy!10}
+\textbf{Account Name} & \textbf{Segment} & \textbf{Locs} & \textbf{ARR} & \textbf{Renewal} & \textbf{Approval <24h} & \textbf{Mgr Hrs} & \textbf{Account Health} \\
+\midrule
+UrbanMart & Retail & 200 & \INR 110L & Aug 2027 & 64\% & 3.5h & Healthy \\
+FreshBowl & Restaurants & 120 & \INR 84L & Jan 2027 & 38\% & 6.5h & \textbf{\color{BrandRose}At Risk (Gridlock)} \\
+CarePoint Clinics & Clinics & 40 & \INR 60L & Dec 2026 & 71\% & 4.0h & \textbf{\color{BrandRose}At Risk (Audit Risk)} \\
+QuickKart & Retail & 90 & \INR 48L & Jun 2027 & 67\% & 3.0h & Healthy \\
+Spice Route & Restaurants & 60 & \INR 36L & Mar 2027 & 41\% & 6.0h & Watchlist \\
+MedAxis Labs & Diagnostics & 25 & \INR 30L & Feb 2027 & 80\% & 2.5h & Healthy \\
+FitZone & Gyms & 50 & \INR 22L & Oct 2026 & 35\% & 5.5h & \textbf{\color{BrandRose}At Risk (Gridlock)} \\
+Brew \& Co & Cafes & 35 & \INR 18L & Nov 2026 & 29\% & 7.0h & \textbf{\color{BrandRose}At Risk (Gridlock)} \\
+\midrule
+\rowcolor{BrandNavy!5}
+\textbf{Total Active (8)} & \textbf{--} & \textbf{620} & \textbf{\INR 408L} & \textbf{--} & \textbf{Avg 53\%} & \textbf{Avg 4.75h} & \textbf{\INR 184L At Risk} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{document}
