@@ -6,13 +6,17 @@
 \geometry{
     a4paper,
     top=14mm,
-    bottom=15mm,
+    bottom=16mm,
     left=16mm,
     right=16mm,
+    headheight=20pt,
     footskip=8mm
 }
 
-\usepackage{lmodern}
+% Modern Executive Typography
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
 \usepackage{amsmath}
 \usepackage{xcolor}
 \usepackage{booktabs}
@@ -24,85 +28,115 @@
 \usepackage{tcolorbox}
 \tcbuselibrary{skins,breakable}
 
-% Professional Brand Palette
-\definecolor{BrandNavy}{HTML}{0F172A}
-\definecolor{BrandIndigo}{HTML}{4338CA}
-\definecolor{BrandBlue}{HTML}{2563EB}
-\definecolor{BrandEmerald}{HTML}{059669}
-\definecolor{BrandRose}{HTML}{E11D48}
-\definecolor{BrandAmber}{HTML}{D97706}
-\definecolor{SurfaceLight}{HTML}{F8FAFC}
-\definecolor{BorderGray}{HTML}{CBD5E1}
-\definecolor{TextMuted}{HTML}{64748B}
+% Curated Modern Color Palette (SaaS & Executive Consulting)
+\definecolor{BrandNavy}{HTML}{0F172A}      % Dark slate primary
+\definecolor{BrandIndigo}{HTML}{4338CA}    % Executive indigo accent
+\definecolor{BrandBlue}{HTML}{2563EB}      % Active blue
+\definecolor{BrandCyan}{HTML}{0284C7}      % Tech cyan
+\definecolor{BrandEmerald}{HTML}{059669}   % Metric success
+\definecolor{BrandRose}{HTML}{E11D48}      % Risk / Churn alert
+\definecolor{BrandAmber}{HTML}{D97706}     % Warning / Caution
+\definecolor{CardBg}{HTML}{F8FAFC}         % Subtle warm card background
+\definecolor{BorderColor}{HTML}{E2E8F0}    % Clean divider border
+\definecolor{TextDark}{HTML}{1E293B}       % High-contrast body text
+\definecolor{TextMuted}{HTML}{64748B}      % Supporting metadata text
 
 \usepackage[colorlinks=true,
     linkcolor=BrandBlue,
     urlcolor=BrandBlue,
     citecolor=BrandBlue]{hyperref}
 
-% Header & Footer
+% Header & Footer Configuration
 \pagestyle{fancy}
 \fancyhf{}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
-\fancyhead[L]{\small\textbf{\color{BrandNavy}Shiftwell} \textbar\ Product Management Intern Case Study}
-\fancyhead[R]{\small\color{TextMuted}Candidate: Krishna Murthi}
-\fancyfoot[L]{\small\color{TextMuted}HugoHub / Hubspark Selection Process (2026--2027)}
-\fancyfoot[R]{\small Page \thepage\ of 4}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{BorderColor}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.5pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{BorderColor}\leaders\hrule height \footrulewidth\hfill}}
+\fancyhead[L]{\small\textbf{\color{BrandNavy}Shiftwell} \textbar\ \color{TextMuted}Product Management Intern Case Study}
+\fancyhead[R]{\small\color{BrandIndigo}\textbf{Krishna Murthi} \textbar\ \color{TextMuted}October 18, 2026}
+\fancyfoot[L]{\footnotesize\color{TextMuted}HugoHub / Hubspark Candidate Selection (2026--2027)}
+\fancyfoot[R]{\footnotesize\bfseries\color{BrandNavy}Page \thepage\ of 4}
 
-% Section styling
-\titleformat{\section}{\normalsize\bfseries\color{BrandNavy}}{}{0em}{}[\titlerule]
+% Clean Section Formatting
+\titleformat{\section}{\normalsize\bfseries\color{BrandNavy}}{}{0em}{}[\vspace{1pt}\color{BorderColor}\hrule height 0.6pt]
 \titleformat{\subsection}{\small\bfseries\color{BrandIndigo}}{}{0em}{}
-\titlespacing*{\section}{0pt}{5pt}{3pt}
-\titlespacing*{\subsection}{0pt}{3pt}{2pt}
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+\titlespacing*{\subsection}{0pt}{4pt}{2pt}
 
 \setlist{itemsep=1.5pt,topsep=1.5pt,parsep=0pt,partopsep=0pt,leftmargin=14pt}
+
+% Reusable Card Styles
+\newtcolorbox{calloutcard}[2][]{
+    enhanced,
+    colback=#2!4!white,
+    colframe=#2!80!black,
+    borderline west={3pt}{0pt}{#2},
+    boxrule=0.5pt,
+    arc=1.5mm,
+    left=3.5mm,right=3.5mm,top=2mm,bottom=2mm,
+    #1
+}
+
+\newtcolorbox{infocard}[1][]{
+    enhanced,
+    colback=CardBg,
+    colframe=BorderColor,
+    boxrule=0.6pt,
+    arc=1.5mm,
+    left=3.5mm,right=3.5mm,top=2mm,bottom=2mm,
+    #1
+}
 
 \newcommand{\INR}{INR~}
 
 \begin{document}
 
 % =============================================================
-% PAGE 1: TITLE BANNER & DELIVERABLE 1 (MEMO PAGE 1 OF 2)
+% PAGE 1: SLEEK EXECUTIVE MASTHEAD & DELIVERABLE 1 (MEMO P1)
 % =============================================================
+
+% Modern Executive Masthead
 \begin{tcolorbox}[
-    colback=BrandNavy,
-    colframe=BrandNavy,
+    enhanced,
+    colback=white,
+    colframe=BrandIndigo,
+    borderline west={4pt}{0pt}{BrandIndigo},
+    boxrule=0.6pt,
     arc=2mm,
-    left=4mm,right=4mm,top=2.5mm,bottom=2.5mm,
-    coltext=white
+    left=4mm,right=4mm,top=3mm,bottom=3mm
 ]
-\begin{center}
-    {\footnotesize\textbf{\textsf{HUGOHUB \textbar\ HUBSPARK PRODUCT INTERN CASE STUDY SUBMISSION}}}\\[1mm]
-    {\Large\textbf{\textsf{Shiftwell: Smart Swap Rules-Based Auto-Approval Engine}}}\\[1mm]
-    {\scriptsize\textbf{Candidate:} Krishna Murthi \quad\textbar\quad \textbf{Target Role:} Product Management Intern \quad\textbar\quad \textbf{Date:} October 18, 2026}\\[0.5mm]
-    {\scriptsize\textbf{Live Prototype:} \href{https://elaborate-parfait-1cc881.netlify.app/}{https://elaborate-parfait-1cc881.netlify.app/} \quad\textbar\quad \textbf{GitHub:} \href{https://github.com/krishnamurthi-ramesh/shiftwell-prototype}{github.com/krishnamurthi-ramesh/shiftwell-prototype}}
-\end{center}
+\begin{minipage}[c]{0.58\textwidth}
+    {\scriptsize\bfseries\color{BrandIndigo}HUGOHUB / HUBSPARK \textbar\ PRODUCT INTERN CASE STUDY}\\[1mm]
+    {\Large\bfseries\color{BrandNavy}Shiftwell: Smart Swap Rules Engine}\\[1mm]
+    {\footnotesize\color{TextDark}Architecting an automated rules-based engine to halt portfolio churn}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.38\textwidth}
+    \raggedleft
+    {\scriptsize\color{TextMuted}CANDIDATE:} {\small\bfseries\color{BrandNavy}Krishna Murthi}\\[1mm]
+    {\scriptsize\color{TextMuted}PROTOTYPE:} \href{https://elaborate-parfait-1cc881.netlify.app/}{\bfseries\color{BrandBlue}elaborate-parfait-1cc881.netlify.app}\\[1mm]
+    {\scriptsize\color{TextMuted}GITHUB:} \href{https://github.com/krishnamurthi-ramesh/shiftwell-prototype}{\bfseries\color{BrandNavy}shiftwell-prototype (Repo)}
+\end{minipage}
 \end{tcolorbox}
 
-\vspace{-3mm}
+\vspace{-2mm}
 \section*{Deliverable 1: Recommendation Memo to the CEO (Page 1 of 2)}
 
-\begin{tcolorbox}[
-    colback=SurfaceLight,
-    colframe=BorderGray,
-    arc=1mm,
-    left=2.5mm,right=2.5mm,top=1.5mm,bottom=1.5mm
-]
+\begin{infocard}
 \footnotesize
 \textbf{MEMORANDUM} \quad\textbar\quad \textbf{TO:} Chief Executive Officer, Shiftwell \quad\textbar\quad \textbf{FROM:} Krishna Murthi, Product Management\\
 \textbf{DATE:} October 18, 2026 \quad\textbar\quad \textbf{SUBJECT:} Q4 2026 Engineering Build Recommendation: What to Ship, What to Defer, and Why
-\end{tcolorbox}
+\end{infocard}
 
-\vspace{-1mm}
 \subsection*{1. Executive Summary \& The Core Diagnosis}
-Our three largest accounts -- FreshBowl (\INR 84L ARR), CarePoint (\INR 60L ARR), and UrbanMart (\INR 110L ARR) -- have submitted urgent, divergent requests. Sales recommends building all three. However, engineering capacity is strictly capped at \textbf{6 sprints} (2 engineers, 1 designer). The three requested custom builds total \textbf{6 sprints} (WhatsApp: 3, Overtime: 2, Certificates: 1), consuming 100\% of our capacity with zero contingency for QA, edge cases, or platform scale.
+Our three largest accounts -- FreshBowl (\INR 84L ARR), CarePoint (\INR 60L ARR), and UrbanMart (\INR 110L ARR) -- have submitted urgent, divergent feature requests. Sales recommends building all three. However, engineering capacity is strictly capped at \textbf{6 sprints} (2 engineers, 1 designer). The three requested custom builds total \textbf{6 sprints} (WhatsApp: 3, Overtime: 2, Certificates: 1), consuming 100\% of capacity with zero contingency for QA, edge cases, or platform scale.
 
 A rigorous diagnostic of customer interview transcripts and churn data uncovers the fundamental truth:
-\begin{tcolorbox}[colback=BrandRose!8!white,colframe=BrandRose!60!black,arc=1mm,left=2.5mm,right=2.5mm,top=1mm,bottom=1mm]
+\begin{calloutcard}{BrandRose}
 \footnotesize
 \textbf{Root-Cause Finding:} Customers ask for communication channels (WhatsApp) and isolated rules, but their existential pain is \textbf{unbearable manager approval latency}. Every swap currently requires manual sign-off by a Location Manager.
-\end{tcolorbox}
+\end{calloutcard}
 
 Across our active and churned accounts, \textbf{Swap Approval Speed (<24 hours) is the single leading indicator of retention and churn}:
 \begin{itemize}
@@ -122,12 +156,16 @@ Instead of three bespoke, disconnected features, I recommend engineering a singl
 \renewcommand{\arraystretch}{1.15}
 \begin{tabularx}{\textwidth}{p{3.2cm}Xp{4.2cm}c}
 \toprule
-\rowcolor{BrandNavy!10}
-\textbf{Engine Rule Module} & \textbf{Functional Mechanism} & \textbf{Accounts Addressed} & \textbf{Sprint Cost} \\
+\rowcolor{BrandNavy}
+\color{white}\textbf{Engine Rule Module} & \color{white}\textbf{Functional Mechanism} & \color{white}\textbf{Accounts Addressed} & \color{white}\textbf{Sprint Cost} \\
 \midrule
+\rowcolor{white}
 \textbf{1. Role \& Skill Match} & Verifies swapper qualification, station certification, and role matrix. & FreshBowl + all restaurant/retail accounts & Core Engine \\
+\rowcolor{CardBg}
 \textbf{2. Overtime Threshold} & Automatically escalates to Regional Manager if weekly hours exceed 48 hrs. & UrbanMart (\INR 110L ARR) + labor compliance & Core Engine \\
+\rowcolor{white}
 \textbf{3. Certificate Validity} & Hard-blocks swaps if mandatory credentials (e.g., BLS, Nursing Council) lapse. & CarePoint (\INR 60L ARR) + clinical safety & 1 Sprint \\
+\rowcolor{CardBg}
 \textbf{4. Auto-Approve on Pass} & Instantly approves eligible swaps in <200ms; sends digest summary to managers. & Portfolio-wide (~75\% swaps automated) & Core Engine \\
 \bottomrule
 \end{tabularx}
@@ -156,10 +194,10 @@ Instead of three bespoke, disconnected features, I recommend engineering a singl
 \end{enumerate}
 
 \subsection*{4. What We Will NOT Build This Quarter (and Why)}
-\begin{tcolorbox}[colback=BrandAmber!8!white,colframe=BrandAmber!70!black,arc=1mm,left=2.5mm,right=2.5mm,top=1mm,bottom=1mm]
+\begin{calloutcard}{BrandAmber}
 \footnotesize
 \textbf{Deferred Initiative:} WhatsApp Swap Request \& Approval Integration (3 Sprints).
-\end{tcolorbox}
+\end{calloutcard}
 \textbf{Rationale:} WhatsApp is a delivery channel, not a decision engine. At FreshBowl, store managers receive 25--30 swap requests every night. Sending 30 WhatsApp notifications per night to an overworked manager still results in delays, ignored messages, and burnout. Once our Rules Engine auto-approves 75\% of swaps, the manager only receives 3--5 genuine exception requests per week. We will re-evaluate WhatsApp in Q1 2027 specifically for \textit{manager escalation alerts}, where it delivers genuine high-leverage utility.
 
 \subsection*{5. Account-by-Account Stakeholder Communication Plan}
@@ -181,7 +219,7 @@ Build the \textbf{Rules-Based Auto-Approval Engine}. It protects \INR 1.84 Cr in
 % =============================================================
 
 \section*{Deliverable 2: Reply to the Sales Head (Strict Word Limit: 200 Words)}
-\begin{tcolorbox}[colback=SurfaceLight,colframe=BrandIndigo!40!white,arc=1mm,left=3mm,right=3mm,top=1.8mm,bottom=1.8mm]
+\begin{calloutcard}{BrandIndigo}
 \footnotesize
 \textbf{Subject: Re: UrbanMart, FreshBowl, and Q4 priorities}\\
 Hi,
@@ -199,7 +237,7 @@ Instead of building two disconnected features that consume all 6 sprints with ze
 We protect all three accounts, address the root cause of portfolio churn, and preserve 2 sprints buffer. WhatsApp merely moves the queue to another screen; auto-approval eliminates 75\% of it. Let's review the numbers together today.
 
 Best, \quad Krishna
-\end{tcolorbox}
+\end{calloutcard}
 \vspace{-2mm}
 \begin{flushright}
 \scriptsize\color{TextMuted}\textit{Word Count: 184 words (Strict Limit: 200 words)}
@@ -238,7 +276,7 @@ In compliance with the case brief, all assumptions formulated where data was uns
 % =============================================================
 
 \section*{Deliverable 4: Build Note (Strict Word Limit: 200 Words)}
-\begin{tcolorbox}[colback=SurfaceLight,colframe=BrandEmerald!40!white,arc=1mm,left=3mm,right=3mm,top=1.8mm,bottom=1.8mm]
+\begin{calloutcard}{BrandEmerald}
 \footnotesize
 \textbf{What the Prototype Does:}\\
 An interactive web application modeling Shiftwell's Rules-Based Auto-Approval Engine across four modules: (1) \textbf{Rules Configurator}: Live toggles and parameter tuning for Role Matching, Overtime Thresholds (48h), Certificate Validity, and Auto-Approval; (2) \textbf{Swap Simulator}: 5 dynamic scenarios (FreshBowl auto-approval, CarePoint BLS expired block, UrbanMart overtime escalation) demonstrating real-time step-by-step pipeline evaluation; (3) \textbf{Account Dashboard}: Visualizes all 8 accounts, churn correlation, and swap distributions; (4) \textbf{Impact Matrix}: Before/after operational metrics and sprint allocation.
@@ -253,7 +291,7 @@ Engineered with semantic HTML5, custom Figma-grade dark CSS design system, and v
     \item Relational schema extensions for staff credential expiry and weekly hours calculation.
     \item Multi-tier manager escalation webhooks and immutable compliance audit logs.
 \end{itemize}
-\end{tcolorbox}
+\end{calloutcard}
 \vspace{-2mm}
 \begin{flushright}
 \scriptsize\color{TextMuted}\textit{Word Count: 182 words (Strict Limit: 200 words)}
@@ -261,25 +299,25 @@ Engineered with semantic HTML5, custom Figma-grade dark CSS design system, and v
 
 \vspace{-2mm}
 \section*{Deliverable 5: Working Prototype Link}
-\begin{tcolorbox}[colback=BrandNavy!5!white,colframe=BrandNavy!60!black,arc=1mm,left=3mm,right=3mm,top=1.5mm,bottom=1.5mm]
+\begin{infocard}
 \footnotesize
 \begin{itemize}
-    \item \textbf{Live Deployed Web Application:} \href{https://elaborate-parfait-1cc881.netlify.app/}{https://elaborate-parfait-1cc881.netlify.app/}
-    \item \textbf{GitHub Source Code Repository:} \href{https://github.com/krishnamurthi-ramesh/shiftwell-prototype}{https://github.com/krishnamurthi-ramesh/shiftwell-prototype}
+    \item \textbf{Live Deployed Web Application:} \href{https://elaborate-parfait-1cc881.netlify.app/}{\bfseries\color{BrandBlue}https://elaborate-parfait-1cc881.netlify.app/}
+    \item \textbf{GitHub Source Code Repository:} \href{https://github.com/krishnamurthi-ramesh/shiftwell-prototype}{\bfseries\color{BrandNavy}github.com/krishnamurthi-ramesh/shiftwell-prototype}
     \item \textbf{Screen Recording Artifact:} Complete test run verified and recorded in IDE artifacts.
 \end{itemize}
-\end{tcolorbox}
+\end{infocard}
 
 \vspace{-2mm}
 \section*{Deliverable 6: AI Chat Link \& Usage Disclosure}
-\begin{tcolorbox}[colback=SurfaceLight,colframe=BorderGray,arc=1mm,left=3mm,right=3mm,top=1.5mm,bottom=1.5mm]
+\begin{infocard}
 \footnotesize
 \begin{itemize}
     \item \textbf{AI Platform Used:} Claude 3.5 Sonnet \& Claude 3.7 Sonnet via Google Antigravity IDE.
-    \item \textbf{Audit \& Trajectory Link:} Full repository commit history and prompt documentation are archived at \href{https://github.com/krishnamurthi-ramesh/shiftwell-prototype/tree/main}{github.com/krishnamurthi-ramesh/shiftwell-prototype} (Conversation ID: \texttt{bd59fb1d-afe5-4395-9774-546bae41f5a1}).
+    \item \textbf{Audit \& Trajectory Link:} Full repository commit history and prompt documentation are archived at \href{https://github.com/krishnamurthi-ramesh/shiftwell-prototype/tree/main}{\bfseries\color{BrandBlue}github.com/krishnamurthi-ramesh/shiftwell-prototype} (Conversation ID: \texttt{bd59fb1d-afe5-4395-9774-546bae41f5a1}).
     \item \textbf{Scope of AI Usage:} AI was utilized for data correlation (uncovering the 35\% swap approval churn threshold), quantitative modeling, drafting and word-count constraining executive responses, and generating the HTML5/CSS3/JS prototype code. Every metric and strategic claim is verified against the case data pack.
 \end{itemize}
-\end{tcolorbox}
+\end{infocard}
 
 \vspace{-2mm}
 \subsection*{Appendix: Active Portfolio Data Pack \& Churn Correlation Matrix}
@@ -287,22 +325,30 @@ Engineered with semantic HTML5, custom Figma-grade dark CSS design system, and v
 \begin{table}[h!]
 \centering
 \scriptsize
-\renewcommand{\arraystretch}{1.08}
+\renewcommand{\arraystretch}{1.1}
 \begin{tabularx}{\textwidth}{lcccccrc}
 \toprule
-\rowcolor{BrandNavy!10}
-\textbf{Account Name} & \textbf{Segment} & \textbf{Locs} & \textbf{ARR} & \textbf{Renewal} & \textbf{Approval <24h} & \textbf{Mgr Hrs} & \textbf{Account Health} \\
+\rowcolor{BrandNavy}
+\color{white}\textbf{Account Name} & \color{white}\textbf{Segment} & \color{white}\textbf{Locs} & \color{white}\textbf{ARR} & \color{white}\textbf{Renewal} & \color{white}\textbf{Approval <24h} & \color{white}\textbf{Mgr Hrs} & \color{white}\textbf{Account Health} \\
 \midrule
+\rowcolor{white}
 UrbanMart & Retail & 200 & \INR 110L & Aug 2027 & 64\% & 3.5h & Healthy \\
+\rowcolor{CardBg}
 FreshBowl & Restaurants & 120 & \INR 84L & Jan 2027 & 38\% & 6.5h & \textbf{\color{BrandRose}At Risk (Gridlock)} \\
+\rowcolor{white}
 CarePoint Clinics & Clinics & 40 & \INR 60L & Dec 2026 & 71\% & 4.0h & \textbf{\color{BrandRose}At Risk (Audit Risk)} \\
+\rowcolor{CardBg}
 QuickKart & Retail & 90 & \INR 48L & Jun 2027 & 67\% & 3.0h & Healthy \\
+\rowcolor{white}
 Spice Route & Restaurants & 60 & \INR 36L & Mar 2027 & 41\% & 6.0h & Watchlist \\
+\rowcolor{CardBg}
 MedAxis Labs & Diagnostics & 25 & \INR 30L & Feb 2027 & 80\% & 2.5h & Healthy \\
+\rowcolor{white}
 FitZone & Gyms & 50 & \INR 22L & Oct 2026 & 35\% & 5.5h & \textbf{\color{BrandRose}At Risk (Gridlock)} \\
+\rowcolor{CardBg}
 Brew \& Co & Cafes & 35 & \INR 18L & Nov 2026 & 29\% & 7.0h & \textbf{\color{BrandRose}At Risk (Gridlock)} \\
 \midrule
-\rowcolor{BrandNavy!5}
+\rowcolor{BrandNavy!10}
 \textbf{Total Active (8)} & \textbf{--} & \textbf{620} & \textbf{\INR 408L} & \textbf{--} & \textbf{Avg 53\%} & \textbf{Avg 4.75h} & \textbf{\INR 184L At Risk} \\
 \bottomrule
 \end{tabularx}
