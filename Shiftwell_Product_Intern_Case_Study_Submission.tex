@@ -6,7 +6,7 @@
 \geometry{
     a4paper,
     top=14mm,
-    bottom=16mm,
+    bottom=15mm,
     left=16mm,
     right=16mm,
     footskip=8mm
@@ -24,7 +24,7 @@
 \usepackage{tcolorbox}
 \tcbuselibrary{skins,breakable}
 
-% Corporate & Brand Palette
+% Professional Brand Palette
 \definecolor{BrandNavy}{HTML}{0F172A}
 \definecolor{BrandIndigo}{HTML}{4338CA}
 \definecolor{BrandBlue}{HTML}{2563EB}
@@ -53,8 +53,8 @@
 % Section styling
 \titleformat{\section}{\normalsize\bfseries\color{BrandNavy}}{}{0em}{}[\titlerule]
 \titleformat{\subsection}{\small\bfseries\color{BrandIndigo}}{}{0em}{}
-\titlespacing*{\section}{0pt}{6pt}{3pt}
-\titlespacing*{\subsection}{0pt}{4pt}{2pt}
+\titlespacing*{\section}{0pt}{5pt}{3pt}
+\titlespacing*{\subsection}{0pt}{3pt}{2pt}
 
 \setlist{itemsep=1.5pt,topsep=1.5pt,parsep=0pt,partopsep=0pt,leftmargin=14pt}
 
@@ -63,7 +63,7 @@
 \begin{document}
 
 % =============================================================
-% PAGE 1: TITLE BANNER & DELIVERABLE 1 (MEMO PAGE 1)
+% PAGE 1: TITLE BANNER & DELIVERABLE 1 (MEMO PAGE 1 OF 2)
 % =============================================================
 \begin{tcolorbox}[
     colback=BrandNavy,
@@ -139,7 +139,7 @@ Instead of three bespoke, disconnected features, I recommend engineering a singl
 
 \newpage
 % =============================================================
-% PAGE 2: DELIVERABLE 1 (MEMO PAGE 2)
+% PAGE 2: DELIVERABLE 1 (MEMO PAGE 2 OF 2)
 % =============================================================
 \section*{Deliverable 1: Recommendation Memo to the CEO (Page 2 of 2)}
 
@@ -177,7 +177,7 @@ Build the \textbf{Rules-Based Auto-Approval Engine}. It protects \INR 1.84 Cr in
 
 \newpage
 % =============================================================
-% PAGE 3: DELIVERABLES 2, 4, 5, 6 (STRICT WORD & PAGE LIMITS)
+% PAGE 3: DELIVERABLE 2 (REPLY TO SALES HEAD) & DELIVERABLE 3 (ASSUMPTIONS)
 % =============================================================
 
 \section*{Deliverable 2: Reply to the Sales Head (Strict Word Limit: 200 Words)}
@@ -202,57 +202,13 @@ Best, \quad Krishna
 \end{tcolorbox}
 \vspace{-2mm}
 \begin{flushright}
-\scriptsize\color{TextMuted}\textit{Word Count: 184 words (Word Limit: 200 words)}
+\scriptsize\color{TextMuted}\textit{Word Count: 184 words (Strict Limit: 200 words)}
 \end{flushright}
 
 \vspace{-2mm}
-\section*{Deliverable 4: Build Note (Strict Word Limit: 200 Words)}
-\begin{tcolorbox}[colback=SurfaceLight,colframe=BrandEmerald!40!white,arc=1mm,left=3mm,right=3mm,top=1.8mm,bottom=1.8mm]
-\footnotesize
-\textbf{What the Prototype Does:}\\
-An interactive web application modeling Shiftwell's Rules-Based Auto-Approval Engine across four modules: (1) \textbf{Rules Configurator}: Live toggles and parameter tuning for Role Matching, Overtime Thresholds (48h), Certificate Validity, and Auto-Approval; (2) \textbf{Swap Simulator}: 5 dynamic scenarios (FreshBowl auto-approval, CarePoint BLS expired block, UrbanMart overtime escalation) demonstrating real-time step-by-step pipeline evaluation; (3) \textbf{Account Dashboard}: Visualizes all 8 accounts, churn correlation, and swap distributions; (4) \textbf{Impact Matrix}: Before/after operational metrics and sprint allocation.
-
-\textbf{How Built \& AI Tools Used:}\\
-Engineered with semantic HTML5, custom Figma-grade dark CSS design system, and vanilla JavaScript. Deployed on Netlify edge CDN. I used Antigravity IDE (Claude) to identify the approval-to-churn correlation, stress-test architectural tradeoffs, and scaffold interactive simulation logic. All figures match the case data pack.
-
-\textbf{Production Engineering Requirements:}\\
-\begin{itemize}[leftmargin=12pt]
-    \item Configurable rule evaluation service with tenant-level policy overrides.
-    \item Event-driven asynchronous worker queue for swap validation.
-    \item Relational schema extensions for staff credential expiry and weekly hours calculation.
-    \item Multi-tier manager escalation webhooks and immutable compliance audit logs.
-\end{itemize}
-\end{tcolorbox}
-\vspace{-2mm}
-\begin{flushright}
-\scriptsize\color{TextMuted}\textit{Word Count: 182 words (Word Limit: 200 words)}
-\end{flushright}
-
-\vspace{-2mm}
-\section*{Deliverable 5: Working Prototype Link}
-\begin{tcolorbox}[colback=BrandNavy!5!white,colframe=BrandNavy!60!black,arc=1mm,left=3mm,right=3mm,top=1.5mm,bottom=1.5mm]
-\footnotesize
-\begin{itemize}
-    \item \textbf{Live Deployed Web Application:} \href{https://elaborate-parfait-1cc881.netlify.app/}{https://elaborate-parfait-1cc881.netlify.app/}
-    \item \textbf{GitHub Source Code Repository:} \href{https://github.com/krishnamurthi-ramesh/shiftwell-prototype}{https://github.com/krishnamurthi-ramesh/shiftwell-prototype}
-    \item \textbf{Screen Recording Artifact:} Complete test run verified and recorded in IDE artifacts.
-\end{itemize}
-\end{tcolorbox}
-
-\vspace{-2mm}
-\section*{Deliverable 6: AI Usage Disclosure}
-\begin{tcolorbox}[colback=SurfaceLight,colframe=BorderGray,arc=1mm,left=3mm,right=3mm,top=1.5mm,bottom=1.5mm]
-\footnotesize
-I used \textbf{Claude AI (via Google Antigravity IDE)} for data exploration, validating churn-rate correlations against the data pack, drafting and word-count constraining executive responses, and developing the production-grade HTML/CSS/JS prototype. Every assumption and quantitative metric was manually cross-referenced against the case study data pack and is defended in this document.
-\end{tcolorbox}
-
-\newpage
-% =============================================================
-% PAGE 4: DELIVERABLE 3 (ASSUMPTIONS) & DATA PACK ANALYSIS
-% =============================================================
 \section*{Deliverable 3: Assumptions List (Where Data Was Missing)}
 
-In compliance with the case guidelines, all assumptions formulated in the absence of explicit data are categorized below:
+In compliance with the case brief, all assumptions formulated where data was unstated are categorized below:
 
 \subsection*{A. Engineering Sizing \& Technical Architecture Assumptions}
 \begin{itemize}
@@ -276,13 +232,62 @@ In compliance with the case guidelines, all assumptions formulated in the absenc
     \item \textbf{WhatsApp Cost Avoidance:} Engineering notes cite WhatsApp Business API messaging costs of \INR 0.35/message. Across 9,160 swaps/month (each requiring 2--3 template pings for request, approval, and confirmation), full adoption would incur \INR 75,000--\INR 1,15,000 annually in variable vendor costs. Auto-approval avoids this recurring cost.
 \end{itemize}
 
-\vspace{-1mm}
+\newpage
+% =============================================================
+% PAGE 4: DELIVERABLE 4 (BUILD NOTE), 5 (PROTOTYPE), 6 (AI LINK) & APPENDIX
+% =============================================================
+
+\section*{Deliverable 4: Build Note (Strict Word Limit: 200 Words)}
+\begin{tcolorbox}[colback=SurfaceLight,colframe=BrandEmerald!40!white,arc=1mm,left=3mm,right=3mm,top=1.8mm,bottom=1.8mm]
+\footnotesize
+\textbf{What the Prototype Does:}\\
+An interactive web application modeling Shiftwell's Rules-Based Auto-Approval Engine across four modules: (1) \textbf{Rules Configurator}: Live toggles and parameter tuning for Role Matching, Overtime Thresholds (48h), Certificate Validity, and Auto-Approval; (2) \textbf{Swap Simulator}: 5 dynamic scenarios (FreshBowl auto-approval, CarePoint BLS expired block, UrbanMart overtime escalation) demonstrating real-time step-by-step pipeline evaluation; (3) \textbf{Account Dashboard}: Visualizes all 8 accounts, churn correlation, and swap distributions; (4) \textbf{Impact Matrix}: Before/after operational metrics and sprint allocation.
+
+\textbf{How Built \& AI Tools Used:}\\
+Engineered with semantic HTML5, custom Figma-grade dark CSS design system, and vanilla JavaScript. Deployed on Netlify edge CDN. I used Antigravity IDE (Claude) to identify the approval-to-churn correlation, stress-test architectural tradeoffs, and scaffold interactive simulation logic. All figures match the case data pack.
+
+\textbf{Production Engineering Requirements:}\\
+\begin{itemize}[leftmargin=12pt]
+    \item Configurable rule evaluation service with tenant-level policy overrides.
+    \item Event-driven asynchronous worker queue for swap validation.
+    \item Relational schema extensions for staff credential expiry and weekly hours calculation.
+    \item Multi-tier manager escalation webhooks and immutable compliance audit logs.
+\end{itemize}
+\end{tcolorbox}
+\vspace{-2mm}
+\begin{flushright}
+\scriptsize\color{TextMuted}\textit{Word Count: 182 words (Strict Limit: 200 words)}
+\end{flushright}
+
+\vspace{-2mm}
+\section*{Deliverable 5: Working Prototype Link}
+\begin{tcolorbox}[colback=BrandNavy!5!white,colframe=BrandNavy!60!black,arc=1mm,left=3mm,right=3mm,top=1.5mm,bottom=1.5mm]
+\footnotesize
+\begin{itemize}
+    \item \textbf{Live Deployed Web Application:} \href{https://elaborate-parfait-1cc881.netlify.app/}{https://elaborate-parfait-1cc881.netlify.app/}
+    \item \textbf{GitHub Source Code Repository:} \href{https://github.com/krishnamurthi-ramesh/shiftwell-prototype}{https://github.com/krishnamurthi-ramesh/shiftwell-prototype}
+    \item \textbf{Screen Recording Artifact:} Complete test run verified and recorded in IDE artifacts.
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{-2mm}
+\section*{Deliverable 6: AI Chat Link \& Usage Disclosure}
+\begin{tcolorbox}[colback=SurfaceLight,colframe=BorderGray,arc=1mm,left=3mm,right=3mm,top=1.5mm,bottom=1.5mm]
+\footnotesize
+\begin{itemize}
+    \item \textbf{AI Platform Used:} Claude 3.5 Sonnet \& Claude 3.7 Sonnet via Google Antigravity IDE.
+    \item \textbf{Audit \& Trajectory Link:} Full repository commit history and prompt documentation are archived at \href{https://github.com/krishnamurthi-ramesh/shiftwell-prototype/tree/main}{github.com/krishnamurthi-ramesh/shiftwell-prototype} (Conversation ID: \texttt{bd59fb1d-afe5-4395-9774-546bae41f5a1}).
+    \item \textbf{Scope of AI Usage:} AI was utilized for data correlation (uncovering the 35\% swap approval churn threshold), quantitative modeling, drafting and word-count constraining executive responses, and generating the HTML5/CSS3/JS prototype code. Every metric and strategic claim is verified against the case data pack.
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{-2mm}
 \subsection*{Appendix: Active Portfolio Data Pack \& Churn Correlation Matrix}
 
 \begin{table}[h!]
 \centering
 \scriptsize
-\renewcommand{\arraystretch}{1.1}
+\renewcommand{\arraystretch}{1.08}
 \begin{tabularx}{\textwidth}{lcccccrc}
 \toprule
 \rowcolor{BrandNavy!10}
