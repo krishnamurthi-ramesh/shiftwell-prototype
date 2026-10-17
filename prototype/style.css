@@ -102,16 +102,16 @@ body {
 }
 
 /* ============================================================
-   GLOBAL APPLICATION HEADER (Crisp Executive White)
+   GLOBAL APPLICATION HEADER (Executive Midnight Navy Cockpit)
    ============================================================ */
 .app-header {
     position: sticky;
     top: 0;
     z-index: 100;
     height: var(--header-height);
-    background: var(--bg-surface-1);
-    border-bottom: 1px solid var(--border-subtle);
-    box-shadow: var(--shadow-sm);
+    background: #090d16;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
 }
 
 .app-header__inner {
@@ -152,25 +152,25 @@ body {
 .app-brand__name {
     font-size: 17px;
     font-weight: 800;
-    color: var(--text-primary);
+    color: #ffffff;
     letter-spacing: -0.02em;
 }
 
 .app-brand__version {
     font-size: 11px;
     font-weight: 700;
-    color: var(--blue);
+    color: #38bdf8;
     font-family: 'JetBrains Mono', monospace;
-    background: var(--blue-surface);
-    padding: 2px 6px;
+    background: rgba(56, 189, 248, 0.12);
+    padding: 2px 7px;
     border-radius: 4px;
-    border: 1px solid var(--blue-border);
+    border: 1px solid rgba(56, 189, 248, 0.28);
 }
 
 .app-divider-v {
     width: 1px;
     height: 22px;
-    background: var(--border-subtle);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* Tenant Context Switcher */
@@ -178,16 +178,22 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--bg-surface-2);
-    border: 1px solid var(--border-muted);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     padding: 5px 12px;
     border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.tenant-selector:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .tenant-selector__label {
     font-size: 10.5px;
     font-weight: 800;
-    color: var(--text-muted);
+    color: #94a3b8;
     font-family: 'JetBrains Mono', monospace;
     letter-spacing: 0.05em;
 }
@@ -195,7 +201,7 @@ body {
 .tenant-selector__select {
     background: transparent;
     border: none;
-    color: var(--text-primary);
+    color: #f1f5f9;
     font-size: 12.5px;
     font-weight: 700;
     cursor: pointer;
@@ -204,8 +210,8 @@ body {
 }
 
 .tenant-selector__select option {
-    background: #ffffff;
-    color: var(--text-primary);
+    background: #090d16;
+    color: #f8fafc;
 }
 
 /* Navigation Tabs */
@@ -213,9 +219,9 @@ body {
     display: flex;
     align-items: center;
     gap: 4px;
-    background: var(--bg-surface-2);
+    background: rgba(0, 0, 0, 0.35);
     padding: 4px;
-    border: 1px solid var(--border-subtle);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-md);
 }
 
@@ -227,7 +233,7 @@ body {
     border: none;
     padding: 7px 15px;
     border-radius: var(--radius-sm);
-    color: var(--text-secondary);
+    color: #94a3b8;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
@@ -235,21 +241,21 @@ body {
 }
 
 .app-nav__tab:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .app-nav__tab.active {
-    background: #ffffff;
-    color: var(--text-primary);
+    background: #2563eb;
+    color: #ffffff;
     font-weight: 700;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 10px rgba(37, 99, 235, 0.45);
 }
 
 .app-header__right {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
 }
 
 .sys-status {
@@ -259,36 +265,48 @@ body {
     font-size: 11.5px;
     font-family: 'JetBrains Mono', monospace;
     font-weight: 600;
-    color: var(--text-secondary);
-    background: var(--bg-surface-2);
-    padding: 5px 10px;
+    color: #86efac;
+    background: rgba(16, 185, 129, 0.08);
+    padding: 5px 11px;
     border-radius: var(--radius-sm);
-    border: 1px solid var(--border-subtle);
+    border: 1px solid rgba(16, 185, 129, 0.25);
 }
 
 .sys-status__indicator {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--emerald);
-    box-shadow: 0 0 6px rgba(21, 128, 61, 0.4);
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+    animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.9); }
 }
 
 .user-pill {
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: var(--bg-surface-2);
-    border: 1px solid var(--border-muted);
-    padding: 3px 12px 3px 4px;
+    gap: 9px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 4px 14px 4px 5px;
     border-radius: 999px;
+    transition: var(--transition);
+}
+
+.user-pill:hover {
+    border-color: rgba(56, 189, 248, 0.35);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .user-pill__avatar {
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
-    background: var(--text-primary);
+    background: #2563eb;
     color: #ffffff;
     font-size: 11px;
     font-weight: 700;
@@ -296,12 +314,27 @@ body {
     align-items: center;
     justify-content: center;
     font-family: 'JetBrains Mono', monospace;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.35);
+}
+
+.user-pill__info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
 }
 
 .user-pill__name {
-    font-size: 12.5px;
+    font-size: 12px;
     font-weight: 700;
-    color: var(--text-primary);
+    color: #ffffff;
+}
+
+.user-pill__role {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 /* ============================================================
@@ -1712,51 +1745,139 @@ body {
 }
 
 /* ============================================================
-   GLOBAL FOOTER & TOAST
+   GLOBAL FOOTER & TOAST (Distinguished Executive Grounding Bar)
    ============================================================ */
 .app-footer {
-    height: var(--footer-height);
-    background: var(--bg-surface-1);
-    border-top: 1px solid var(--border-subtle);
+    position: relative;
+    background: #050811;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     font-size: 12px;
-    color: var(--text-muted);
-    font-weight: 600;
+    color: #94a3b8;
+    box-shadow: 0 -4px 20px -2px rgba(0, 0, 0, 0.25);
+    margin-top: auto;
+}
+
+.app-footer__accent-bar {
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(90deg, #2563eb 0%, #06b6d4 25%, #10b981 50%, #f59e0b 75%, #8b5cf6 100%);
 }
 
 .app-footer__inner {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 0 24px;
-    height: 100%;
+    padding: 16px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
 }
 
 .app-footer__left, .app-footer__right {
     display: flex;
     align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.footer-brand {
+    font-weight: 700;
+    color: #cbd5e1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+}
+
+.footer-meta {
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.footer-candidate {
+    display: inline-flex;
+    align-items: center;
     gap: 10px;
+    color: #cbd5e1;
+}
+
+.candidate-name {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.candidate-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(16, 185, 129, 0.12);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.32);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2.5px 9px;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
 }
 
 .app-footer__dot {
-    width: 3px;
-    height: 3px;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
-    background: var(--text-dim);
+    background: rgba(255, 255, 255, 0.2);
 }
 
-.app-footer__link {
-    display: flex;
+.app-footer__btn {
+    display: inline-flex;
     align-items: center;
-    gap: 6px;
-    color: var(--text-secondary);
+    gap: 7px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #f1f5f9;
+    padding: 6px 13px;
+    border-radius: 6px;
     text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
     transition: var(--transition);
 }
 
-.app-footer__link:hover {
-    color: var(--text-primary);
+.app-footer__btn:hover {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.app-footer__live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.32);
+    color: #34d399;
+    padding: 6px 13px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 11.5px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    transition: var(--transition);
+}
+
+.app-footer__live-badge:hover {
+    background: rgba(16, 185, 129, 0.22);
+    border-color: #34d399;
+    color: #a7f3d0;
+}
+
+.live-pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+    animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .toast {
