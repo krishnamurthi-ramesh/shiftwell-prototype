@@ -7,9 +7,10 @@
 
 ## 🚀 Live Prototype & Deployment
 
+- **Live Prototype URL**: **[https://elaborate-parfait-1cc881.netlify.app/](https://elaborate-parfait-1cc881.netlify.app/)**
 - **GitHub Repository**: [krishnamurthi-ramesh/shiftwell-prototype](https://github.com/krishnamurthi-ramesh/shiftwell-prototype)
 - **Tech Stack**: Semantic HTML5, Vanilla CSS Design System (Figma-grade tokens, dark SaaS aesthetic), Vanilla JavaScript Controller (Zero build step, 100% static)
-- **Deployment Ready**: Optimized for Netlify (`publish = "prototype"` in `netlify.toml`)
+- **Deployment Status**: 🟢 Active on Netlify Production Edge (`publish = "prototype"`)
 
 ---
 
