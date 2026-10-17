@@ -1,96 +1,94 @@
-# Shiftwell — Smart Swap Auto-Approval Engine
+# Shiftwell — Rules-Based Auto-Approval Engine
 
-> **HugoHub / Hubspark Product Intern Case Study (2026–2027)**  
-> An intelligent, rules-based auto-approval engine for shift swaps that protects at-risk ARR, slashes manager administrative overhead by ~65%, and eliminates compliance vulnerabilities.
+> **HugoHub / Hubspark Product Management Intern Case Study Submission (2026–2027)**  
+> **Candidate:** Krishna Murthi  
+> **Submission Document:** [Shiftwell_Product_Intern_Case_Study_Submission.pdf](./Shiftwell_Product_Intern_Case_Study_Submission.pdf) (4-page executive LaTeX memo)
 
 ---
 
 ## 🚀 Live Prototype & Deployment
 
-- **Live Prototype URL**: **[https://elaborate-parfait-1cc881.netlify.app/](https://elaborate-parfait-1cc881.netlify.app/)**
+- **Live Deployed Prototype**: **[https://elaborate-parfait-1cc881.netlify.app/](https://elaborate-parfait-1cc881.netlify.app/)**
 - **GitHub Repository**: [krishnamurthi-ramesh/shiftwell-prototype](https://github.com/krishnamurthi-ramesh/shiftwell-prototype)
-- **Tech Stack**: Semantic HTML5, Vanilla CSS Design System (Figma-grade tokens, dark SaaS aesthetic), Vanilla JavaScript Controller (Zero build step, 100% static)
-- **Deployment Status**: 🟢 Active on Netlify Production Edge (`publish = "prototype"`)
+- **UI Architecture**: Semantic HTML5, Figma-Grade Dark B2B SaaS Design System (Linear & Stripe aesthetic, deep slate surfaces, zero cartoon emojis or AI glow artifacts), Vanilla JavaScript Controller (100% static, zero build step, sub-millisecond execution).
+- **Hosting**: Netlify Production Edge (`publish = "prototype"`)
 
 ---
 
-## 📌 Problem & Strategic Context
+## 📌 Executive Summary & Root-Cause Diagnosis
 
-Shiftwell's portfolio data reveals that **swap approval speed is the single greatest predictor of customer retention and churn**:
-- Accounts with **>60%** swaps approved within 24h are **Healthy** (UrbanMart, QuickKart, MedAxis).
-- Accounts with **<40%** swaps approved within 24h are **At Risk** or have **Churned** (FreshBowl 28%, CarePoint 19%, FitZone 38%, Brew&Co 35%).
-- Root cause: **Manual manager bottlenecks**. Store managers spend 5–7 hours/week approving routine swaps without checking details, causing delays of 12–24+ hours.
+Across Shiftwell's active portfolio (8 enterprise accounts, 620 locations, INR 4.08 Cr ARR) and churned accounts over the past 12 months, **Swap Approval Speed (<24 hours) is the single leading indicator of retention and churn**:
+- **Healthy Accounts** (UrbanMart, QuickKart, MedAxis Labs): Average **70%** of swaps resolved in <24 hours.
+- **At-Risk Accounts** (FreshBowl, CarePoint, FitZone, Brew & Co): Average only **34%** of swaps resolved in <24 hours.
+- **Churned Accounts** (TandooriTown 24%, GreenLeaf 31%, PawsCare 31%): Averaged **28.7%** prior to churn.
 
-### The Solution: Shiftwell Smart Swap Engine
-Instead of building one-off custom features (e.g. WhatsApp integration for 3 sprints), Shiftwell builds a **universal, configurable rules engine (~4 sprints)**:
-1. **Auto-Approves** trained-staff swaps instantly when conditions match.
-2. **Escalates** overtime breaches to Regional or Store Managers with 1-click approvals.
-3. **Blocks** compliance breaches (e.g., lapsed healthcare certifications like BLS/ACLS).
+Every single account lost in the past 12 months had approval speeds under 35%. GreenLeaf's exit interview confirms the root cause:
+> *"Honestly it wasn't WhatsApp. Our managers couldn't keep up with approvals, and RotaPro let swaps go through automatically if the person was trained."*
 
----
-
-## ✨ Prototype Features
-
-### 1. ⚙️ Rules Configuration Panel
-- **Role & Skill Match**: Match by role tag, skill matrix, or station qualification.
-- **Overtime Threshold**: Configurable weekly hour cap (e.g., 48 hrs) with automated escalation routing.
-- **Certificate Validity**: Real-time validation against required licenses with expiration warning thresholds.
-- **Auto-Approve Decisioning**: Instant auto-approval with daily manager digest and complete audit trail.
-- **Visual Evaluation Pipeline**: Real-time visual flow showing the status of each rule in the processing pipeline.
-
-### 2. ⚡ Real-Time Swap Simulation
-Interactive simulator testing real scenarios against the engine:
-- **FreshBowl — Cook Swap (Auto-Approve ✅)**: Line cook bilateral swap; verified in 140ms.
-- **CarePoint — Expired BLS Nurse (Blocked 🛑)**: Catches lapsed certification; eliminates regulatory fines.
-- **UrbanMart — Overtime Breach (Escalate ⚠️)**: Swapper reaches 53 hrs; automatically escalated to Regional Manager with OT cost calculation.
-- **FreshBowl — Near Overtime (Escalate ⚠️)**: Tier-1 breach routed to Location Store Manager.
-- **CarePoint — Valid ICU Nurse (Auto-Approve ✅)**: Validated clinical qualification; zero disruption.
-
-### 3. 📊 Account Health Dashboard
-- Portfolio KPI overview (Total ARR ₹4.08 Cr, Active Accounts, Monthly Swaps, Avg Approval Rate).
-- Active accounts data table with progress bars, health status pills, and manager time tracking.
-- Interactive horizontal bar chart visualizing the churn danger threshold (<40%).
-- Post-mortem analysis on churned accounts (GreenLeaf, TandooriTown, StyleHub, PawsCare).
-
-### 4. 📈 Projected Q4 Impact
-- **₹1.84 Cr At-Risk ARR Protected** (FreshBowl ₹84L, CarePoint ₹60L, FitZone ₹22L, Brew&Co ₹18L).
-- **~65% Manager Time Reduction** (from 4.75 hrs/wk down to ~1.7 hrs/wk).
-- **Instant Resolution for 75% of Swaps**.
-- **Sprint Roadmap**: 3 sprints core engine + 1 sprint cert module + 2 sprints buffer/QA.
+WhatsApp merely relocates an unmanageable queue from mobile app to chat; it does nothing to clear it.
 
 ---
 
-## 💻 How to Run Locally
+## 🎯 The Strategic Recommendation: Build the Rules-Based Engine
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/krishnamurthi-ramesh/shiftwell-prototype.git
-   ```
-2. Open `prototype/index.html` in any web browser:
-   - On Windows: double-click `prototype/index.html` or open in Chrome/Edge.
-   - Or use VS Code Live Server / Python HTTP server:
-     ```bash
-     cd prototype
-     python -m http.server 8000
-     ```
-   - Visit `http://localhost:8000`
+Instead of 3 bespoke one-offs consuming 100% of engineering capacity (6/6 sprints) with zero buffer:
+- **Build a Universal Rules-Based Auto-Approval Engine in 4 Sprints**:
+  - **Core Rules Engine**: 3 sprints (evaluates role/station qualification, 48h overtime threshold, and instant auto-approval).
+  - **Clinical Certificate Module**: 1 sprint (enforces mandatory licenses for CarePoint Clinics).
+  - **Contingency Buffer**: 2 full sprints preserved for integration testing, edge cases, and pilot rollouts.
+- **Total Capacity Consumed**: 4 / 6 Sprints (33% safety buffer preserved).
+- **Defer WhatsApp to Q1 2027**: Re-evaluate strictly as an escalation notification channel once 75% of routine swaps are auto-resolved.
 
 ---
 
-## 🌐 Deploy to Netlify
+## 💻 Enterprise Prototype Architecture
 
-### Option A: Via GitHub (Recommended)
-1. In Netlify, click **Add new site** > **Import an existing project** > **GitHub**.
-2. Select `shiftwell-prototype`.
-3. Set **Publish directory** to `prototype` (or leave as configured in `netlify.toml`).
-4. Click **Deploy site**.
+### 1. ⚙️ Tenant-Aware Policy Configurator
+- **Tenant Context Switcher**: Switch between **FreshBowl** (120 locs), **CarePoint Clinics** (40 locs), **UrbanMart** (200 locs), and **Global Default** to see policies adapt dynamically.
+- **Rule Matrix**:
+  - `RULE-01-ROLE-MATCH`: Role tag + station qualification verification.
+  - `RULE-02-OVERTIME-CAP`: 48-hour statutory weekly limit with automated regional manager escalation.
+  - `RULE-03-CERT-VALIDITY`: Hard-block for lapsed clinical credentials (BLS, Nursing Council).
+  - `RULE-04-AUTO-APPROVE`: <200ms automated resolution with daily digest summaries.
 
-### Option B: Via Netlify Drop
-1. Go to [app.netlify.com/drop](https://app.netlify.com/drop).
-2. Drag and drop the `prototype` folder.
-3. Your site is live instantly!
+### 2. ⚡ Live Swap Simulator & Custom Sandbox
+- **5 Canonical Case Study Scenarios**:
+  - **FreshBowl Line Cook Swap**: All rules pass $\rightarrow$ Auto-Approved in 142ms.
+  - **CarePoint Expired BLS Nurse**: Regulatory violation $\rightarrow$ Hard-Blocked in 88ms.
+  - **UrbanMart Overtime Breach (53h)**: Pushes staff to 53 hrs $\rightarrow$ Escalated to Regional Manager with cost projection.
+  - **FreshBowl Station Cook Overtime**: Minor breach $\rightarrow$ Escalated to Store Manager.
+  - **CarePoint Validated ICU Nurse**: Full compliance $\rightarrow$ Auto-Approved in 178ms.
+- **Interactive Custom Sandbox**: Configure custom role match, hours, and credential status live to test arbitrary policy edge cases.
+- **Multi-View Decision Inspector**:
+  - **Verdict Summary**: Key decision code, latency metrics, and compliance status.
+  - **Frontline Mobile View**: Native smartphone card preview showing instant auto-approval.
+  - **Manager Action Desk**: Zero-interruption digest or 1-click authorization desk.
+  - **JSON Audit Ledger**: Full trace payload with cryptographic IDs, rule results, and timestamps.
+
+### 3. 📊 Portfolio Health & Churn Correlation Matrix
+- Audited portfolio data table covering all 8 accounts (UrbanMart INR 110L, FreshBowl INR 84L, CarePoint INR 60L, QuickKart INR 48L, Spice Route INR 36L, MedAxis INR 30L, FitZone INR 22L, Brew & Co INR 18L).
+- Interactive horizontal bar chart visualizing the 35% churn inflection threshold.
+- Historical post-mortem records for GreenLeaf, TandooriTown, and PawsCare.
+
+### 4. 📈 Strategic ROI & Sprint Planning
+- Sprint capacity comparison: 100% capacity risk (Sales request) vs 4 sprints + 2 buffer (Our plan).
+- Financial economics: INR 38,000–INR 1,15,400/yr saved on WhatsApp API costs + 65% manager workload reduction (~1,920 frontline hours/week recovered across 620 locations).
 
 ---
 
-## 📄 License & Attribution
-Prepared for the **HugoHub / Hubspark Product Intern Selection Process (2026–2027)** by **Krishna Murthi**.
+## 🛠 Local Development & Testing
+
+```bash
+# Clone the repository
+git clone https://github.com/krishnamurthi-ramesh/shiftwell-prototype.git
+
+# Serve locally
+cd shiftwell-prototype
+python -m http.server 8080 --directory prototype
+```
+Open `http://localhost:8080` in any modern web browser.
+
+---
+
+## 📄 License & Case Study Attribution
+Prepared by **Krishna Murthi** for the **HugoHub / Hubspark Product Management Intern Selection (2026–2027)**.
