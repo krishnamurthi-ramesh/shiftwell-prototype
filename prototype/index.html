@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiftwell — Smart Swap Engine</title>
+    <meta name="description" content="Shiftwell's Rules-Based Auto-Approval Engine for shift swap management">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ============ GLOBAL HEADER ============ -->
+    <header class="g-header" id="global-header">
+        <div class="g-header__inner">
+            <div class="g-header__left">
+                <a href="#" class="g-header__logo" aria-label="Shiftwell Home">
+                    <div class="g-header__logo-mark">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <rect width="28" height="28" rx="8" fill="url(#logo-grad)"/>
+                            <path d="M8 14.5L12 18.5L20 10.5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <span class="g-header__wordmark">Shiftwell</span>
+                    <span class="g-header__product-tag">Smart Swap Engine</span>
+                </a>
+                <nav class="g-header__nav" id="main-nav">
+                    <button class="g-header__nav-item active" data-tab="rules" aria-current="page">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6.5 1L2 4v8l4.5 3L11 12V4L6.5 1z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M11 4l3 2v4l-3 2" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                        Rules
+                    </button>
+                    <button class="g-header__nav-item" data-tab="simulate">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2v12l10-6L4 2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                        Simulate
+                    </button>
+                    <button class="g-header__nav-item" data-tab="dashboard">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
+                        Dashboard
+                    </button>
+                    <button class="g-header__nav-item" data-tab="impact">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M3 13l5-5 2 2 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Impact
+                    </button>
+                </nav>
+            </div>
+            <div class="g-header__right">
+                <div class="g-header__env-badge">
+                    <span class="g-header__env-dot"></span>
+                    Prototype
+                </div>
+                <div class="g-header__avatar" title="Admin User">
+                    <span>KM</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ MAIN ============ -->
+    <main class="g-main">
+        <div class="g-main__container">
+
+            <!-- ======= RULES PANEL ======= -->
+            <section class="panel active" id="panel-rules">
+                <div class="page-header">
+                    <div class="page-header__text">
+                        <h1 class="page-header__title">Auto-Approval Rules</h1>
+                        <p class="page-header__subtitle">Configure rules that determine when shift swaps are auto-approved, escalated, or blocked. When all enabled rules pass, swaps resolve instantly.</p>
+                    </div>
+                    <div class="page-header__actions">
+                        <button class="btn btn--outline" onclick="resetRules()">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7a6 6 0 1 1 1.07 3.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M1 11V7h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Reset
+                        </button>
+                        <button class="btn btn--primary" onclick="saveRules()">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 1H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4l-2-3z" stroke="currentColor" stroke-width="1.3"/><path d="M9 13V8H5v5M5 1v3h3" stroke="currentColor" stroke-width="1.3"/></svg>
+                            Save Configuration
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Rules Pipeline Visual -->
+                <div class="pipeline">
+                    <div class="pipeline__label">Evaluation Pipeline</div>
+                    <div class="pipeline__flow">
+                        <div class="pipeline__node pipeline__node--start">
+                            <div class="pipeline__node-icon">📨</div>
+                            <span>Swap Request</span>
+                        </div>
+                        <div class="pipeline__arrow"><svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20M16 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="pipeline__node" data-pipeline="role" id="pipe-role">
+                            <div class="pipeline__node-icon">👤</div>
+                            <span>Role Match</span>
+                        </div>
+                        <div class="pipeline__arrow"><svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20M16 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="pipeline__node" data-pipeline="overtime" id="pipe-overtime">
+                            <div class="pipeline__node-icon">⏰</div>
+                            <span>Overtime</span>
+                        </div>
+                        <div class="pipeline__arrow"><svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20M16 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="pipeline__node" data-pipeline="cert" id="pipe-cert">
+                            <div class="pipeline__node-icon">📋</div>
+                            <span>Certificates</span>
+                        </div>
+                        <div class="pipeline__arrow"><svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20M16 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="pipeline__node pipeline__node--end">
+                            <div class="pipeline__node-icon">⚡</div>
+                            <span>Decision</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rules Cards -->
+                <div class="rules-grid">
+                    <!-- Rule 1 -->
+                    <div class="rule-card rule-card--active" id="rule-role" data-rule="role">
+                        <div class="rule-card__glow rule-card__glow--indigo"></div>
+                        <div class="rule-card__header">
+                            <div class="rule-card__icon rule-card__icon--indigo">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </div>
+                            <div class="rule-card__title-area">
+                                <h3 class="rule-card__title">Role & Skill Match</h3>
+                                <p class="rule-card__desc">Verify swapper is trained for the target shift's role or station</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked onchange="handleRuleToggle('role', this.checked)">
+                                <span class="switch__track"><span class="switch__thumb"></span></span>
+                            </label>
+                        </div>
+                        <div class="rule-card__body">
+                            <div class="rule-card__config">
+                                <div class="form-group">
+                                    <label class="form-label">Match criteria</label>
+                                    <div class="select-wrap">
+                                        <select class="form-select" id="cfg-role-match">
+                                            <option value="role">Role tag only</option>
+                                            <option value="skill" selected>Role + skill set</option>
+                                            <option value="station">Role + station qualification</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">On mismatch</label>
+                                    <div class="select-wrap">
+                                        <select class="form-select" id="cfg-role-action">
+                                            <option value="send_to_manager" selected>Send to Location Manager</option>
+                                            <option value="block">Block swap</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rule-card__tags">
+                                <span class="chip chip--emerald">Addresses FreshBowl</span>
+                                <span class="chip chip--sky">All accounts</span>
+                                <span class="chip chip--slate">~0 sprint (core)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 2 -->
+                    <div class="rule-card rule-card--active" id="rule-overtime" data-rule="overtime">
+                        <div class="rule-card__glow rule-card__glow--amber"></div>
+                        <div class="rule-card__header">
+                            <div class="rule-card__icon rule-card__icon--amber">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M11 6v5l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="rule-card__title-area">
+                                <h3 class="rule-card__title">Overtime Threshold</h3>
+                                <p class="rule-card__desc">Escalate if swap pushes staff past weekly hour limit</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked onchange="handleRuleToggle('overtime', this.checked)">
+                                <span class="switch__track"><span class="switch__thumb"></span></span>
+                            </label>
+                        </div>
+                        <div class="rule-card__body">
+                            <div class="rule-card__config">
+                                <div class="form-group">
+                                    <label class="form-label">Max hours / week</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" class="form-input" id="cfg-ot-hours" value="48" min="20" max="84">
+                                        <span class="input-unit">hrs</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Escalate to</label>
+                                    <div class="select-wrap">
+                                        <select class="form-select" id="cfg-ot-escalate">
+                                            <option value="regional" selected>Regional Manager</option>
+                                            <option value="admin">Admin (Head Office)</option>
+                                            <option value="location">Location Manager</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rule-card__tags">
+                                <span class="chip chip--amber">Solves UrbanMart</span>
+                                <span class="chip chip--sky">All accounts</span>
+                                <span class="chip chip--slate">~0 sprint (core)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 3 -->
+                    <div class="rule-card rule-card--active" id="rule-cert" data-rule="cert">
+                        <div class="rule-card__glow rule-card__glow--rose"></div>
+                        <div class="rule-card__header">
+                            <div class="rule-card__icon rule-card__icon--rose">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="1" width="16" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 6h8M7 10h8M7 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </div>
+                            <div class="rule-card__title-area">
+                                <h3 class="rule-card__title">Certificate Validity</h3>
+                                <p class="rule-card__desc">Block scheduling if any required certification has expired</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked onchange="handleRuleToggle('cert', this.checked)">
+                                <span class="switch__track"><span class="switch__thumb"></span></span>
+                            </label>
+                        </div>
+                        <div class="rule-card__body">
+                            <div class="rule-card__config">
+                                <div class="form-group">
+                                    <label class="form-label">Check scope</label>
+                                    <div class="select-wrap">
+                                        <select class="form-select" id="cfg-cert-scope">
+                                            <option value="all" selected>All required certs for role</option>
+                                            <option value="critical">Critical certs only (e.g. BLS)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Expiry warning</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" class="form-input" id="cfg-cert-warn" value="30" min="7" max="90">
+                                        <span class="input-unit">days before</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rule-card__tags">
+                                <span class="chip chip--rose">CarePoint compliance</span>
+                                <span class="chip chip--sky">Healthcare segment</span>
+                                <span class="chip chip--slate">~1 sprint</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 4 -->
+                    <div class="rule-card rule-card--active" id="rule-auto" data-rule="auto">
+                        <div class="rule-card__glow rule-card__glow--emerald"></div>
+                        <div class="rule-card__header">
+                            <div class="rule-card__icon rule-card__icon--emerald">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 1l2.5 6.5H20l-5.5 4 2 6.5L11 14l-5.5 4 2-6.5L2 7.5h6.5L11 1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="rule-card__title-area">
+                                <h3 class="rule-card__title">Auto-Approve on Pass</h3>
+                                <p class="rule-card__desc">Instantly approve swaps when all enabled rules pass</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked onchange="handleRuleToggle('auto', this.checked)">
+                                <span class="switch__track"><span class="switch__thumb"></span></span>
+                            </label>
+                        </div>
+                        <div class="rule-card__body">
+                            <div class="rule-card__config">
+                                <div class="form-group">
+                                    <label class="form-label">Manager notification</label>
+                                    <div class="select-wrap">
+                                        <select class="form-select" id="cfg-auto-notify">
+                                            <option value="digest" selected>Daily digest email</option>
+                                            <option value="instant">Instant push notification</option>
+                                            <option value="none">No notification</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Audit log</label>
+                                    <div class="select-wrap">
+                                        <select class="form-select" id="cfg-auto-audit">
+                                            <option value="full" selected>Full (every auto-approval logged)</option>
+                                            <option value="summary">Summary only</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rule-card__tags">
+                                <span class="chip chip--emerald">Core engine feature</span>
+                                <span class="chip chip--sky">All accounts</span>
+                                <span class="chip chip--slate">~3 sprints (engine)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======= SIMULATION PANEL ======= -->
+            <section class="panel" id="panel-simulate">
+                <div class="page-header">
+                    <div class="page-header__text">
+                        <h1 class="page-header__title">Swap Simulation</h1>
+                        <p class="page-header__subtitle">Select a scenario and watch how the rules engine evaluates a swap request in real-time.</p>
+                    </div>
+                </div>
+
+                <div class="sim-layout">
+                    <!-- Left: Scenario Input -->
+                    <div class="sim-input">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3 class="card__title">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7z" stroke="currentColor" stroke-width="1.3"/><path d="M8 4v4l3 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                                    Scenario
+                                </h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="form-group" style="margin-bottom:0">
+                                    <div class="select-wrap">
+                                        <select class="form-select form-select--lg" id="scenario-select" onchange="loadScenario()">
+                                            <option value="freshbowl-pass">FreshBowl — Cook swap (Auto-Approve ✅)</option>
+                                            <option value="carepoint-fail">CarePoint — Expired BLS nurse (Block 🛑)</option>
+                                            <option value="urbanmart-escalate">UrbanMart — Overtime breach (Escalate ⚠️)</option>
+                                            <option value="freshbowl-overtime">FreshBowl — Cook near overtime (Escalate ⚠️)</option>
+                                            <option value="carepoint-pass">CarePoint — Valid certs nurse (Auto-Approve ✅)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__header">
+                                <h3 class="card__title">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 14v-1.5a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3V14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="4.5" r="2.5" stroke="currentColor" stroke-width="1.3"/></svg>
+                                    Swap Participants
+                                </h3>
+                                <span class="card__badge" id="sim-account-badge">FreshBowl</span>
+                            </div>
+                            <div class="card__body" id="sim-participants"></div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__header">
+                                <h3 class="card__title">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M2 6h12M6 2v12" stroke="currentColor" stroke-width="1.3"/></svg>
+                                    Shift Details
+                                </h3>
+                            </div>
+                            <div class="card__body" id="sim-shift-details"></div>
+                        </div>
+
+                        <button class="btn btn--primary btn--lg btn--block" id="btn-run" onclick="runSim()">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2v12l10-6L4 2z" fill="currentColor"/></svg>
+                            Run Through Rules Engine
+                        </button>
+                    </div>
+
+                    <!-- Right: Flow Output -->
+                    <div class="sim-output">
+                        <div class="card card--tall">
+                            <div class="card__header">
+                                <h3 class="card__title">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/></svg>
+                                    Rules Engine Evaluation
+                                </h3>
+                                <span class="card__badge card__badge--ghost" id="sim-status-badge">Waiting...</span>
+                            </div>
+                            <div class="card__body">
+                                <div class="flow" id="sim-flow">
+                                    <div class="flow__empty">
+                                        <div class="flow__empty-icon">
+                                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.5" opacity="0.3"/><path d="M18 24h12M30 20l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/></svg>
+                                        </div>
+                                        <p>Select a scenario and click <strong>"Run Through Rules Engine"</strong> to see the evaluation flow.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Outcome -->
+                        <div class="outcome" id="sim-outcome"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======= DASHBOARD PANEL ======= -->
+            <section class="panel" id="panel-dashboard">
+                <div class="page-header">
+                    <div class="page-header__text">
+                        <h1 class="page-header__title">Account Dashboard</h1>
+                        <p class="page-header__subtitle">Portfolio health overview — swap approval rates are the #1 predictor of account retention.</p>
+                    </div>
+                    <div class="page-header__actions">
+                        <span class="page-header__date">Data: September 2026</span>
+                    </div>
+                </div>
+
+                <!-- KPI Row -->
+                <div class="kpi-row">
+                    <div class="kpi">
+                        <div class="kpi__icon kpi__icon--indigo"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 1l2.2 6.6H19l-5.5 4 2.1 6.4L10 14l-5.6 4 2.1-6.4L1 7.6h6.8L10 1z" stroke="currentColor" stroke-width="1.3"/></svg></div>
+                        <div class="kpi__content">
+                            <div class="kpi__value">₹4.08 Cr</div>
+                            <div class="kpi__label">Total ARR</div>
+                        </div>
+                        <div class="kpi__change kpi__change--danger">↓ ₹80L lost (12mo)</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi__icon kpi__icon--emerald"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M17 10c0 3.9-3.1 7-7 7s-7-3.1-7-7 3.1-7 7-7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 4v6l4 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+                        <div class="kpi__content">
+                            <div class="kpi__value">8</div>
+                            <div class="kpi__label">Active Accounts</div>
+                        </div>
+                        <div class="kpi__change kpi__change--danger">4 at risk</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi__icon kpi__icon--amber"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15V8M10 15V3M15 15v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+                        <div class="kpi__content">
+                            <div class="kpi__value">9,160</div>
+                            <div class="kpi__label">Monthly Swaps</div>
+                        </div>
+                        <div class="kpi__change">across portfolio</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi__icon kpi__icon--rose"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+                        <div class="kpi__content">
+                            <div class="kpi__value">49%</div>
+                            <div class="kpi__label">Avg Approval <24h</div>
+                        </div>
+                        <div class="kpi__change kpi__change--danger">Churned avg: 37%</div>
+                    </div>
+                </div>
+
+                <!-- Account Table -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="card__title">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M1 6h14" stroke="currentColor" stroke-width="1.3"/></svg>
+                            Active Accounts
+                        </h3>
+                        <span class="card__badge">8 accounts</span>
+                    </div>
+                    <div class="card__body card__body--flush">
+                        <div class="table-wrap">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Account</th>
+                                        <th>Segment</th>
+                                        <th class="text-right">Locations</th>
+                                        <th class="text-right">ARR</th>
+                                        <th>Renewal</th>
+                                        <th>Swap Approval &lt;24h</th>
+                                        <th class="text-right">Mgr hrs/wk</th>
+                                        <th>Health</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl-accounts"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts row -->
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3 class="card__title">Swap Approval vs Health</h3>
+                        </div>
+                        <div class="card__body" id="chart-approval"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card__header">
+                            <h3 class="card__title">Projected Swap Outcomes (with Engine)</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="donut-chart">
+                                <div class="donut-chart__visual">
+                                    <svg viewBox="0 0 120 120" class="donut-svg">
+                                        <circle cx="60" cy="60" r="48" fill="none" stroke="var(--surface-2)" stroke-width="18"/>
+                                        <circle cx="60" cy="60" r="48" fill="none" stroke="var(--emerald)" stroke-width="18"
+                                            stroke-dasharray="226.2 301.6" stroke-linecap="round" class="donut-seg" style="--delay:0"/>
+                                        <circle cx="60" cy="60" r="48" fill="none" stroke="var(--violet)" stroke-width="18"
+                                            stroke-dasharray="36.2 301.6" stroke-dashoffset="-226.2" stroke-linecap="round" class="donut-seg" style="--delay:0.15"/>
+                                        <circle cx="60" cy="60" r="48" fill="none" stroke="var(--rose)" stroke-width="18"
+                                            stroke-dasharray="15.1 301.6" stroke-dashoffset="-262.4" stroke-linecap="round" class="donut-seg" style="--delay:0.3"/>
+                                        <circle cx="60" cy="60" r="48" fill="none" stroke="var(--text-4)" stroke-width="18"
+                                            stroke-dasharray="24.1 301.6" stroke-dashoffset="-277.5" stroke-linecap="round" class="donut-seg" style="--delay:0.45"/>
+                                        <text x="60" y="56" text-anchor="middle" class="donut-pct">75%</text>
+                                        <text x="60" y="72" text-anchor="middle" class="donut-label">Auto</text>
+                                    </svg>
+                                </div>
+                                <div class="donut-chart__legend">
+                                    <div class="legend-row"><span class="legend-dot" style="background:var(--emerald)"></span><span class="legend-text">Auto-Approved</span><span class="legend-val">75%</span></div>
+                                    <div class="legend-row"><span class="legend-dot" style="background:var(--violet)"></span><span class="legend-text">Escalated</span><span class="legend-val">12%</span></div>
+                                    <div class="legend-row"><span class="legend-dot" style="background:var(--rose)"></span><span class="legend-text">Blocked</span><span class="legend-val">5%</span></div>
+                                    <div class="legend-row"><span class="legend-dot" style="background:var(--text-4)"></span><span class="legend-text">Manual Review</span><span class="legend-val">8%</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Churned Accounts -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="card__title">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v6M8 11v.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2.5 13.5l5.5-12 5.5 12H2.5z" stroke="currentColor" stroke-width="1.3"/></svg>
+                            Churned Accounts (Last 12 Months) — Pattern Analysis
+                        </h3>
+                        <span class="card__badge card__badge--danger">₹80L ARR lost</span>
+                    </div>
+                    <div class="card__body card__body--flush">
+                        <div class="table-wrap">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Account</th>
+                                        <th>Segment</th>
+                                        <th class="text-right">ARR Lost</th>
+                                        <th>Stated Reason</th>
+                                        <th>Swap Approval <24h</th>
+                                        <th>Insight</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-medium">StyleHub</td>
+                                        <td>Retail</td>
+                                        <td class="text-right">₹30L</td>
+                                        <td>Budget cuts</td>
+                                        <td><div class="inline-bar"><div class="inline-bar__fill inline-bar__fill--warn" style="width:60%"></div><span>60%</span></div></td>
+                                        <td class="text-muted text-sm">Likely genuine — healthy metrics</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-medium">TandooriTown</td>
+                                        <td>Restaurants</td>
+                                        <td class="text-right">₹25L</td>
+                                        <td>Price</td>
+                                        <td><div class="inline-bar"><div class="inline-bar__fill inline-bar__fill--danger" style="width:22%"></div><span>22%</span></div></td>
+                                        <td class="text-danger text-sm">Low approval = poor experience</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-medium">GreenLeaf</td>
+                                        <td>Restaurants</td>
+                                        <td class="text-right">₹16L</td>
+                                        <td>Moved to RotaPro</td>
+                                        <td><div class="inline-bar"><div class="inline-bar__fill inline-bar__fill--danger" style="width:31%"></div><span>31%</span></div></td>
+                                        <td class="text-danger text-sm">Exit: "It wasn't WhatsApp — it was auto-approval"</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-medium">PawsCare</td>
+                                        <td>Clinics</td>
+                                        <td class="text-right">₹9L</td>
+                                        <td>Back to spreadsheets</td>
+                                        <td><div class="inline-bar"><div class="inline-bar__fill inline-bar__fill--danger" style="width:33%"></div><span>33%</span></div></td>
+                                        <td class="text-danger text-sm">Product wasn't solving core pain</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======= IMPACT PANEL ======= -->
+            <section class="panel" id="panel-impact">
+                <div class="page-header">
+                    <div class="page-header__text">
+                        <h1 class="page-header__title">Projected Impact — Q4 2026</h1>
+                        <p class="page-header__subtitle">Revenue protection, operational improvement, and competitive positioning from shipping the Rules Engine.</p>
+                    </div>
+                </div>
+
+                <!-- Impact Hero KPIs -->
+                <div class="impact-kpis">
+                    <div class="impact-kpi impact-kpi--emerald">
+                        <div class="impact-kpi__icon">🛡️</div>
+                        <div class="impact-kpi__value">₹1.84 Cr</div>
+                        <div class="impact-kpi__label">At-Risk ARR Protected</div>
+                        <div class="impact-kpi__detail">FreshBowl ₹84L · CarePoint ₹60L · FitZone ₹22L · Brew&Co ₹18L</div>
+                    </div>
+                    <div class="impact-kpi impact-kpi--indigo">
+                        <div class="impact-kpi__icon">⏱️</div>
+                        <div class="impact-kpi__value">~65%</div>
+                        <div class="impact-kpi__label">Manager Time Reduction</div>
+                        <div class="impact-kpi__detail">Avg 4.75 → ~1.7 hrs/wk on swap approvals</div>
+                    </div>
+                    <div class="impact-kpi impact-kpi--amber">
+                        <div class="impact-kpi__icon">⚡</div>
+                        <div class="impact-kpi__value">Instant</div>
+                        <div class="impact-kpi__label">75% of Swaps Resolved</div>
+                        <div class="impact-kpi__detail">Currently avg 12–24 hrs for manager approval</div>
+                    </div>
+                </div>
+
+                <!-- Before/After Cards -->
+                <h2 class="section-title">Account-Level Before → After</h2>
+                <div class="impact-grid" id="impact-grid"></div>
+
+                <!-- Sprint Allocation -->
+                <div class="card" style="margin-top: 24px;">
+                    <div class="card__header">
+                        <h3 class="card__title">Sprint Allocation — 6 Available</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="sprint-bar">
+                            <div class="sprint-bar__segment sprint-bar__segment--indigo" style="width: 50%" data-label="Core Rules Engine — 3 sprints"></div>
+                            <div class="sprint-bar__segment sprint-bar__segment--rose" style="width: 16.6%" data-label="Certificate Module — 1 sprint"></div>
+                            <div class="sprint-bar__segment sprint-bar__segment--emerald" style="width: 33.3%" data-label="Buffer / QA / Iteration — 2 sprints"></div>
+                        </div>
+                        <div class="sprint-legend">
+                            <span class="sprint-legend__item"><span class="sprint-legend__dot sprint-legend__dot--indigo"></span>Core Engine (3)</span>
+                            <span class="sprint-legend__item"><span class="sprint-legend__dot sprint-legend__dot--rose"></span>Certificate Module (1)</span>
+                            <span class="sprint-legend__item"><span class="sprint-legend__dot sprint-legend__dot--emerald"></span>Buffer / QA (2)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ============ GLOBAL FOOTER ============ -->
+    <footer class="g-footer">
+        <div class="g-footer__inner">
+            <div class="g-footer__left">
+                <div class="g-footer__logo">
+                    <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
+                        <rect width="28" height="28" rx="8" fill="url(#footer-grad)"/>
+                        <path d="M8 14.5L12 18.5L20 10.5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs><linearGradient id="footer-grad" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+                    </svg>
+                    <span>Shiftwell</span>
+                </div>
+                <span class="g-footer__copy">© 2026 Shiftwell · Smart Swap Engine Prototype</span>
+            </div>
+            <div class="g-footer__right">
+                <a href="#" class="g-footer__link">Documentation</a>
+                <a href="#" class="g-footer__link">API Reference</a>
+                <a href="#" class="g-footer__link">Changelog</a>
+                <span class="g-footer__version">v0.1.0-proto</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"><span class="toast__icon">✓</span><span class="toast__text" id="toast-text">Saved</span></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
