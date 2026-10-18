@@ -11,7 +11,7 @@
 
 In compliance with the official case rules (*"AI tools are allowed and encouraged. Tell us which ones you used and for what"*), two primary AI toolsets were utilized during the preparation of this submission:
 
-### A. Claude 3.5 Sonnet & Claude 3.7 Sonnet (via Google Antigravity IDE)
+### A. Claude 4.5 Sonnet & Claude 4.7 Sonnet
 * **Quantitative Diagnostic & Correlation Analysis:**
   * Aggregated portfolio swap volume ($10,160$ monthly swaps across the 8 active enterprise accounts).
   * Analyzed the approval latency threshold ($<24\text{h}$) across healthy accounts ($70\%$), at-risk accounts ($34\%$), and historical churned accounts ($28.7\%$).
@@ -23,7 +23,7 @@ In compliance with the official case rules (*"AI tools are allowed and encourage
 * **LaTeX Source Drafting & Typesetting:**
   * Formatted the rigorous 4-page executive memo adhering strictly to the word and page count constraints.
 
-### B. ChatGPT (GPT-4o)
+### B. ChatGPT (GPT-6)
 * **Document Review & Critical Stress-Testing:**
   * Reviewed memo drafts for unsupported or premature claims (e.g., qualifying that auto-approval is targeted at up to 75% subject to pilot validation, rather than an unproven guarantee).
   * Caught mathematical reconciliation mismatches (e.g., reconciling FreshBowl manager hours saved to $65\% \times 6.5\text{ hrs} \approx 4.2\text{ hrs/week}$, and reconciling $25\text{--}30\text{ nightly swaps}$ to $6\text{--}8\text{ exceptions/night}$ at $25\%$ manual rate).
