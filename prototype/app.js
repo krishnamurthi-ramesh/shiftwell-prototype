@@ -1124,3 +1124,311 @@ function renderImpactCards() {
         </div>
     `).join("");
 }
+
+// ============================================================
+// 8. TAB 5: ARCHITECTURE & API PLAYGROUND LOGIC
+// ============================================================
+
+let currentApiEndpoint = "evaluate";
+let currentApiPreset = "freshbowl";
+
+const apiPresets = {
+    evaluate: {
+        freshbowl: {
+            method: "POST",
+            url: "https://api.shiftwell.io/v1/swaps/evaluate",
+            headers: "Content-Type: application/json\nX-Tenant-ID: freshbowl-corp-120\nX-Idempotency-Key: idemp-9a8b7c-20261018-001\nAuthorization: Bearer sec_tok_pm_demo_2027",
+            payload: JSON.stringify({
+                swap_id: "sw-8941",
+                tenant_id: "freshbowl",
+                shift: {
+                    shift_id: "sh-5520",
+                    start_time: "2026-10-24T16:00:00Z",
+                    end_time: "2026-10-24T23:00:00Z",
+                    duration_hours: 7.0,
+                    station_required: "Grill & Line Cook"
+                },
+                requester: { staff_id: "usr-104-rs", role: "Line Cook" },
+                acceptor: { staff_id: "usr-104-av", role: "Line Cook", current_weekly_hours: 32.0 }
+            }, null, 2),
+            responseStatus: "HTTP 200 OK",
+            statusColor: "green",
+            latency: "138ms",
+            responseHeaders: "x-shiftwell-eval-time: 138ms\nx-rule-version: engine-v2.4\nx-idempotency-status: SAVED\ncontent-type: application/json; charset=utf-8",
+            responseBody: JSON.stringify({
+                status: "APPROVED",
+                resolution: "AUTO_APPROVED",
+                latency_ms: 138,
+                rules_evaluated: [
+                    { rule: "ROLE_MATCH", status: "PASS", details: "Station certified for Grill & Line Cook" },
+                    { rule: "OVERTIME_CAP_48H", status: "PASS", details: "39.0h <= 48.0h threshold limit" },
+                    { rule: "CERTIFICATE_VALIDITY", status: "PASS", details: "FSSAI Food Safety Level 2 verified active" }
+                ],
+                swap_state: "CONFIRMED_IN_ROSTER",
+                manager_interruption_prevented: true,
+                audit_log_id: "aud-9021-fbowl-pass"
+            }, null, 2)
+        },
+        carepoint: {
+            method: "POST",
+            url: "https://api.shiftwell.io/v1/swaps/evaluate",
+            headers: "Content-Type: application/json\nX-Tenant-ID: carepoint-clinics-40\nX-Idempotency-Key: idemp-cp40-20261018-002\nAuthorization: Bearer sec_tok_pm_demo_2027",
+            payload: JSON.stringify({
+                swap_id: "sw-8942",
+                tenant_id: "carepoint",
+                shift: {
+                    shift_id: "sh-8114",
+                    start_time: "2026-10-25T07:00:00Z",
+                    end_time: "2026-10-25T15:00:00Z",
+                    duration_hours: 8.0,
+                    station_required: "Registered Nurse - ICU"
+                },
+                requester: { staff_id: "usr-cp-02", role: "ICU Staff Nurse" },
+                acceptor: { staff_id: "usr-cp-09", role: "Staff Nurse", current_weekly_hours: 24.0, credentials: [{ name: "BLS_CPR", expires: "2026-10-04" }] }
+            }, null, 2),
+            responseStatus: "HTTP 422 Unprocessable Entity",
+            statusColor: "red",
+            latency: "114ms",
+            responseHeaders: "x-shiftwell-eval-time: 114ms\nx-rule-version: engine-v2.4\nx-compliance-alert: AUDIT_SAFEGUARD\ncontent-type: application/json; charset=utf-8",
+            responseBody: JSON.stringify({
+                status: "REJECTED",
+                resolution: "HARD_BLOCKED",
+                latency_ms: 114,
+                rules_evaluated: [
+                    { rule: "CERTIFICATE_VALIDITY", status: "FAIL", details: "MANDATORY_CREDENTIAL_EXPIRED: BLS_CPR expired 14 days ago on 2026-10-04" },
+                    { rule: "ROLE_MATCH", status: "SKIPPED", details: "Evaluation aborted after critical compliance breach" },
+                    { rule: "OVERTIME_CAP_48H", status: "SKIPPED", details: "Evaluation aborted" }
+                ],
+                swap_state: "HARD_BLOCKED",
+                compliance_violation_prevented: true,
+                regulatory_fine_mitigated: "Statutory Council Audit Exposure Defended",
+                audit_log_id: "aud-9022-cpoint-block"
+            }, null, 2)
+        },
+        urbanmart: {
+            method: "POST",
+            url: "https://api.shiftwell.io/v1/swaps/evaluate",
+            headers: "Content-Type: application/json\nX-Tenant-ID: urbanmart-retail-200\nX-Idempotency-Key: idemp-um200-20261018-003\nAuthorization: Bearer sec_tok_pm_demo_2027",
+            payload: JSON.stringify({
+                swap_id: "sw-8943",
+                tenant_id: "urbanmart",
+                shift: {
+                    shift_id: "sh-9012",
+                    start_time: "2026-10-24T10:00:00Z",
+                    end_time: "2026-10-24T18:00:00Z",
+                    duration_hours: 8.0,
+                    station_required: "Cash Office Supervisor"
+                },
+                requester: { staff_id: "usr-um-44", role: "Cashier Supervisor" },
+                acceptor: { staff_id: "usr-um-19", role: "Senior Cashier", current_weekly_hours: 45.0 }
+            }, null, 2),
+            responseStatus: "HTTP 200 OK (Escalation Required)",
+            statusColor: "amber",
+            latency: "148ms",
+            responseHeaders: "x-shiftwell-eval-time: 148ms\nx-escalation-target: REGIONAL_OPERATIONS_MANAGER\ncontent-type: application/json; charset=utf-8",
+            responseBody: JSON.stringify({
+                status: "ESCALATED",
+                resolution: "ROUTED_FOR_AUTHORIZATION",
+                latency_ms: 148,
+                rules_evaluated: [
+                    { rule: "ROLE_MATCH", status: "PASS", details: "Supervisor credentials match target shift" },
+                    { rule: "OVERTIME_CAP_48H", status: "ESCALATE", details: "Cumulative hours: 45.0h + 8.0h = 53.0h (Exceeds 48h limit by 5.0h)" },
+                    { rule: "CERTIFICATE_VALIDITY", status: "PASS", details: "No active regulatory certifications expired" }
+                ],
+                swap_state: "PENDING_REGIONAL_AUTHORIZATION",
+                escalation: {
+                    assigned_role: "Regional Operations Manager",
+                    action_required: "1-Click Overtime Authorization",
+                    estimated_overtime_cost: "INR 1,350 (5.0h @ 1.5x wage rate)"
+                },
+                audit_log_id: "aud-9023-umart-escalate"
+            }, null, 2)
+        }
+    },
+    rules: {
+        method: "GET",
+        url: "https://api.shiftwell.io/v1/tenants/freshbowl/rules",
+        headers: "Accept: application/json\nX-Tenant-ID: freshbowl-corp-120\nAuthorization: Bearer sec_tok_pm_demo_2027",
+        payload: "// GET requests carry no request body.\n// Query parameters: include_audit=true&active_only=true",
+        responseStatus: "HTTP 200 OK",
+        statusColor: "green",
+        latency: "82ms",
+        responseHeaders: "x-shiftwell-eval-time: 82ms\ncontent-type: application/json; charset=utf-8\ncache-control: max-age=60, private",
+        responseBody: JSON.stringify({
+            tenant_id: "freshbowl",
+            account_name: "FreshBowl Restaurants",
+            locations_count: 120,
+            active_policies: {
+                role_qualification_check: { enabled: true, level: "STATION_CERTIFICATION", on_mismatch: "STORE_MANAGER_REVIEW" },
+                overtime_threshold_cap: { enabled: true, limit_hours: 48.0, on_breach: "REGIONAL_MANAGER_ESCALATION" },
+                certificate_validity_check: { enabled: true, hard_block: true, warning_grace_days: 30 },
+                auto_approval_engine: { enabled: true, target_automation_rate: "75%", bypass_human_review: true }
+            },
+            version: "v2.4.1",
+            last_configured_by: "VP Operations (FreshBowl)"
+        }, null, 2)
+    },
+    override: {
+        method: "POST",
+        url: "https://api.shiftwell.io/v1/swaps/sw-8943/override",
+        headers: "Content-Type: application/json\nX-Tenant-ID: urbanmart-retail-200\nAuthorization: Bearer sec_tok_regional_mgr_auth",
+        payload: JSON.stringify({
+            authorized_by: "usr-reg-mgr-08",
+            authorization_type: "ONE_CLICK_OVERTIME_APPROVAL",
+            reason: "Emergency holiday peak rush coverage authorized",
+            overtime_hours_approved: 5.0,
+            cost_budget_code: "STORE_104_LABOR_OT"
+        }, null, 2),
+        responseStatus: "HTTP 200 OK",
+        statusColor: "green",
+        latency: "164ms",
+        responseHeaders: "x-shiftwell-eval-time: 164ms\nx-state: SWAP_CONFIRMED\ncontent-type: application/json; charset=utf-8",
+        responseBody: JSON.stringify({
+            status: "OVERRIDE_APPROVED",
+            swap_id: "sw-8943",
+            authorized_by: "Regional Operations Manager (usr-reg-mgr-08)",
+            final_roster_status: "PUBLISHED_TO_STORE",
+            audit_logged: true,
+            timestamp: new Date().toISOString()
+        }, null, 2)
+    }
+};
+
+function switchApiEndpoint(endpointKey) {
+    currentApiEndpoint = endpointKey;
+    const tabs = document.querySelectorAll(".api-tab");
+    tabs.forEach(t => t.classList.remove("active"));
+    const activeTab = Array.from(tabs).find(t => t.textContent.includes(endpointKey));
+    if (activeTab) activeTab.classList.add("active");
+
+    const methodEl = document.getElementById("api-method-display");
+    const urlEl = document.getElementById("api-url-display");
+    const headersEl = document.getElementById("api-headers-display");
+    const payloadEl = document.getElementById("api-payload-display");
+    const presetsContainer = document.querySelector(".payload-presets");
+
+    if (endpointKey === "evaluate") {
+        presetsContainer.style.display = "flex";
+        setApiPreset(currentApiPreset);
+    } else {
+        presetsContainer.style.display = "none";
+        const ep = apiPresets[endpointKey];
+        if (methodEl) {
+            methodEl.textContent = ep.method;
+            methodEl.className = `api-method-badge method-${ep.method.toLowerCase()}`;
+        }
+        if (urlEl) urlEl.textContent = ep.url;
+        if (headersEl) headersEl.textContent = ep.headers;
+        if (payloadEl) payloadEl.textContent = ep.payload;
+        setApiResponseView(ep.responseStatus, ep.statusColor, ep.latency, ep.responseHeaders, ep.responseBody);
+    }
+}
+
+function setApiPreset(presetKey) {
+    currentApiPreset = presetKey;
+    const chips = document.querySelectorAll(".payload-chip");
+    chips.forEach(c => c.classList.remove("active"));
+    const activeChip = Array.from(chips).find(c => c.textContent.toLowerCase().includes(presetKey));
+    if (activeChip) activeChip.classList.add("active");
+
+    const ep = apiPresets.evaluate[presetKey];
+    const methodEl = document.getElementById("api-method-display");
+    const urlEl = document.getElementById("api-url-display");
+    const headersEl = document.getElementById("api-headers-display");
+    const payloadEl = document.getElementById("api-payload-display");
+
+    if (methodEl) {
+        methodEl.textContent = ep.method;
+        methodEl.className = `api-method-badge method-${ep.method.toLowerCase()}`;
+    }
+    if (urlEl) urlEl.textContent = ep.url;
+    if (headersEl) headersEl.textContent = ep.headers;
+    if (payloadEl) payloadEl.textContent = ep.payload;
+
+    setApiResponseView(ep.responseStatus, ep.statusColor, ep.latency, ep.responseHeaders, ep.responseBody);
+}
+
+function setApiResponseView(status, dotColor, latency, headers, body) {
+    const dot = document.getElementById("api-res-dot");
+    const statusEl = document.getElementById("api-res-status");
+    const latencyEl = document.getElementById("api-res-latency");
+    const headersEl = document.getElementById("api-res-headers");
+    const bodyEl = document.getElementById("api-res-body");
+
+    if (dot) dot.className = `status-indicator-dot status-indicator-dot--${dotColor}`;
+    if (statusEl) statusEl.textContent = status;
+    if (latencyEl) latencyEl.textContent = `Latency: ${latency}`;
+    if (headersEl) headersEl.textContent = headers;
+    if (bodyEl) bodyEl.textContent = body;
+}
+
+function executeApiTest() {
+    const btn = document.getElementById("btn-api-execute");
+    if (!btn) return;
+    btn.disabled = true;
+    btn.innerHTML = `<span class="spinner" style="width:14px;height:14px;border:2px solid #ffffff;border-top-color:transparent;border-radius:50%;display:inline-block;animation:spin 0.6s linear infinite;margin-right:6px;"></span> Executing Rule Pipeline...`;
+
+    const randomLatency = Math.floor(Math.random() * 35) + 120; // 120-155ms
+
+    setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9-5.5-9-5.5z"/></svg> Execute Live API Request`;
+
+        let activeData = null;
+        if (currentApiEndpoint === "evaluate") {
+            activeData = apiPresets.evaluate[currentApiPreset];
+        } else {
+            activeData = apiPresets[currentApiEndpoint];
+        }
+
+        setApiResponseView(activeData.responseStatus, activeData.statusColor, `${randomLatency}ms`, activeData.responseHeaders, activeData.responseBody);
+        showToast(`API Response returned in ${randomLatency}ms: ${activeData.responseStatus}`);
+    }, 350);
+}
+
+function copyCurlCommand() {
+    let curl = "";
+    if (currentApiEndpoint === "evaluate") {
+        const ep = apiPresets.evaluate[currentApiPreset];
+        curl = `curl -X POST "${ep.url}" \\\n  -H "Content-Type: application/json" \\\n  -H "X-Tenant-ID: freshbowl-corp-120" \\\n  -H "X-Idempotency-Key: idemp-9a8b7c-20261018-001" \\\n  -d '${ep.payload.replace(/\n\s*/g, " ")}'`;
+    } else {
+        const ep = apiPresets[currentApiEndpoint];
+        curl = `curl -X ${ep.method} "${ep.url}" \\\n  -H "Accept: application/json"`;
+    }
+    navigator.clipboard.writeText(curl).then(() => {
+        showToast("cURL command copied to clipboard!");
+    }).catch(() => {
+        showToast("cURL copied");
+    });
+}
+
+function copySqlSchema() {
+    const sqlBlock = document.querySelector(".sql-block");
+    if (!sqlBlock) return;
+    const text = sqlBlock.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        showToast("PostgreSQL Schema DDL copied to clipboard!");
+    }).catch(() => {
+        showToast("Schema copied");
+    });
+}
+
+function openConnectModal() {
+    const modal = document.getElementById("connect-modal");
+    if (modal) modal.classList.add("open");
+}
+
+function closeConnectModal(e) {
+    if (e && e.target !== e.currentTarget && !e.target.classList.contains("modal-close-btn")) return;
+    const modal = document.getElementById("connect-modal");
+    if (modal) modal.classList.remove("open");
+}
+
+function copyContactEmail() {
+    const email = "krishnamurthi.product@gmail.com";
+    navigator.clipboard.writeText(email).then(() => {
+        showToast("Candidate email copied: krishnamurthi.product@gmail.com");
+    }).catch(() => {
+        showToast("Email: krishnamurthi.product@gmail.com");
+    });
+}

@@ -62,14 +62,22 @@
                     <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 14L6 9l3 3 5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 5h4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span>Strategic ROI</span>
                 </button>
+                <button class="app-nav__tab" id="tab-btn-tech" data-tab="tech" onclick="switchTab('tech')">
+                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M5 4L1.5 8 5 12M11 4l3.5 4-3.5 4M9.5 2.5l-3 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Architecture & APIs</span>
+                </button>
             </nav>
 
             <div class="app-header__right">
+                <button class="btn btn--primary btn--sm connect-header-btn" onclick="openConnectModal()" title="Connect with PM Candidate">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h11A1.5 1.5 0 0 1 15 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 3.5l6.5 5 6.5-5" stroke="currentColor" stroke-width="1.4"/></svg>
+                    <span>Connect with PM</span>
+                </button>
                 <div class="sys-status">
                     <span class="sys-status__indicator"></span>
                     <span class="sys-status__text">Engine Online (140ms p95)</span>
                 </div>
-                <div class="user-pill" title="Hubspark Candidate Evaluation Account">
+                <div class="user-pill" title="Hubspark Candidate Evaluation Account" onclick="openConnectModal()" style="cursor:pointer;">
                     <span class="user-pill__avatar">KM</span>
                     <div class="user-pill__info">
                         <span class="user-pill__name">Krishna Murthi</span>
@@ -753,8 +761,426 @@
                 </div>
             </section>
 
+            <!-- ======================================================== -->
+            <!-- TAB 5: SYSTEM ARCHITECTURE & ENGINEERING SPECS            -->
+            <!-- ======================================================== -->
+            <section class="panel" id="panel-tech">
+                <div class="section-banner">
+                    <div class="section-banner__main">
+                        <div class="section-banner__pretitle">ENGINEERING SPECIFICATIONS & ARCHITECTURE</div>
+                        <h1 class="section-banner__title">System Architecture & Technical Handoff</h1>
+                        <p class="section-banner__desc">Designed for Senior Software Engineers, Tech Leads, and Engineering Directors evaluating platform scalability, sub-200ms evaluation latency, distributed concurrency locking, and relational schema integrity.</p>
+                    </div>
+                    <div class="section-banner__actions">
+                        <a href="https://www.figma.com/board/OJXSOr8Sc4iL8QuREGRVgK/Bilateral-Swap-Policy-Engine-Flow?node-id=9-69" target="_blank" rel="noopener" class="btn btn--subtle">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/></svg>
+                            Open FigJam State Machine
+                        </a>
+                        <button class="btn btn--primary" onclick="openConnectModal()">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h11A1.5 1.5 0 0 1 15 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 3.5l6.5 5 6.5-5" stroke="currentColor" stroke-width="1.4"/></svg>
+                            Connect with PM Candidate
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Engineering SLA Strip -->
+                <div class="kpi-strip tech-kpi-strip">
+                    <div class="kpi-card">
+                        <span class="kpi-card__label">EVALUATION LATENCY SLA</span>
+                        <div class="kpi-card__val mono text-success">&lt; 150 ms</div>
+                        <span class="kpi-card__sub">In-memory rule execution (p95 target)</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-card__label">CONCURRENCY SAFETY</span>
+                        <div class="kpi-card__val mono text-primary">Redis Redlock</div>
+                        <span class="kpi-card__sub">Zero double-swapped shift slots</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-card__label">TENANT ISOLATION</span>
+                        <div class="kpi-card__val mono text-blue">RLS + Partitioning</div>
+                        <span class="kpi-card__sub">Zero cross-account data leakage</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-card__label">AUDIT COMPLIANCE</span>
+                        <div class="kpi-card__val mono text-amber">Immutable Log</div>
+                        <span class="kpi-card__sub">Append-only regulatory trail</span>
+                    </div>
+                </div>
+
+                <!-- Block 1: Microservices Topology & Flow -->
+                <div class="tech-card">
+                    <div class="tech-card__header">
+                        <div class="tech-card__title-wrap">
+                            <span class="tech-card__tag">SYSTEM ARCHITECTURE</span>
+                            <h2 class="tech-card__title">Distributed Microservices & Data Pipeline Topology</h2>
+                        </div>
+                        <span class="mono-badge">EVENT-DRIVEN ARCHITECTURE</span>
+                    </div>
+                    <div class="tech-card__body">
+                        <div class="arch-topology">
+                            <div class="arch-node arch-node--client">
+                                <div class="arch-node__badge">CLIENT APPS</div>
+                                <div class="arch-node__title">Frontline Mobile & Web Portal</div>
+                                <p class="arch-node__desc">Staff bilateral swap request submission; store manager escalation digests.</p>
+                                <span class="arch-node__tag">React Native / Next.js</span>
+                            </div>
+                            <div class="arch-connector">
+                                <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20M16 1l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                                <span>HTTPS / REST</span>
+                            </div>
+                            <div class="arch-node arch-node--gateway">
+                                <div class="arch-node__badge">INGRESS</div>
+                                <div class="arch-node__title">Kong / Cloudflare API Gateway</div>
+                                <p class="arch-node__desc">JWT authentication, tenant context injection, token-bucket rate limiting.</p>
+                                <span class="arch-node__tag">OAuth2 · Idempotency</span>
+                            </div>
+                            <div class="arch-connector">
+                                <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20M16 1l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                                <span>gRPC / Internal</span>
+                            </div>
+                            <div class="arch-node arch-node--engine">
+                                <div class="arch-node__badge">CORE PLATFORM</div>
+                                <div class="arch-node__title">Rules Evaluation Engine</div>
+                                <p class="arch-node__desc">Stateless rule-evaluating pipeline: Role Match → Overtime (48h) → Cert Validity → Auto-Approve.</p>
+                                <span class="arch-node__tag">Go / Rust Microservice</span>
+                            </div>
+                        </div>
+
+                        <div class="arch-lower-grid">
+                            <div class="arch-subcard">
+                                <div class="arch-subcard__header">
+                                    <span class="subcard-icon">⚡</span>
+                                    <h4>State & Concurrency: Redis Cluster 7.0</h4>
+                                </div>
+                                <p>Distributed mutex locking (Redlock) on shift slots (`lock:shift:{id}`) with 5000ms TTL. Prevents race conditions when multiple staff attempt to claim open or swapped shifts simultaneously.</p>
+                            </div>
+                            <div class="arch-subcard">
+                                <div class="arch-subcard__header">
+                                    <span class="subcard-icon">🗄️</span>
+                                    <h4>Persistence: PostgreSQL 16</h4>
+                                </div>
+                                <p>ACID-compliant relational store with tenant schema isolation and optimistic locking via `xmin`. Manages staff rosters, certified skill matrices, and append-only regulatory audit logs.</p>
+                            </div>
+                            <div class="arch-subcard">
+                                <div class="arch-subcard__header">
+                                    <span class="subcard-icon">📨</span>
+                                    <h4>Async Messaging: Apache Kafka</h4>
+                                </div>
+                                <p>Event-driven bus publishing topics `swap.evaluated`, `swap.approved`, and `swap.escalated`. Decouples rule processing from downstream manager digests and webhook dispatches.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Block 2: Interactive API Explorer & cURL Playground -->
+                <div class="tech-card">
+                    <div class="tech-card__header">
+                        <div class="tech-card__title-wrap">
+                            <span class="tech-card__tag">API CONTRACT SPECIFICATIONS</span>
+                            <h2 class="tech-card__title">OpenAPI 3.1 Interactive Endpoint Playground</h2>
+                        </div>
+                        <div class="api-tabs">
+                            <button class="api-tab active" onclick="switchApiEndpoint('evaluate')">POST /swaps/evaluate</button>
+                            <button class="api-tab" onclick="switchApiEndpoint('rules')">GET /tenants/{id}/rules</button>
+                            <button class="api-tab" onclick="switchApiEndpoint('override')">POST /swaps/{id}/override</button>
+                        </div>
+                    </div>
+                    <div class="tech-card__body">
+                        <div class="api-playground">
+                            <!-- Left: Request Details -->
+                            <div class="api-col api-col--req">
+                                <div class="api-header-row">
+                                    <div class="api-method-badge method-post" id="api-method-display">POST</div>
+                                    <div class="api-url mono" id="api-url-display">https://api.shiftwell.io/v1/swaps/evaluate</div>
+                                    <button class="btn btn--subtle btn--xs" onclick="copyCurlCommand()">Copy cURL</button>
+                                </div>
+                                <div class="api-section-label">REQUEST HEADERS</div>
+                                <div class="api-code-block mono api-headers-box" id="api-headers-display">
+Content-Type: application/json
+X-Tenant-ID: freshbowl-corp-120
+X-Idempotency-Key: idemp-9a8b7c-20261018-001
+Authorization: Bearer sec_tok_pm_demo_2027
+                                </div>
+
+                                <div class="api-section-label" style="display:flex; justify-content:space-between; align-items:center;">
+                                    <span>REQUEST PAYLOAD (JSON)</span>
+                                    <div class="payload-presets">
+                                        <button class="payload-chip active" onclick="setApiPreset('freshbowl')">FreshBowl Pass</button>
+                                        <button class="payload-chip" onclick="setApiPreset('carepoint')">CarePoint Expired</button>
+                                        <button class="payload-chip" onclick="setApiPreset('urbanmart')">UrbanMart Overtime</button>
+                                    </div>
+                                </div>
+                                <div class="api-code-block mono" id="api-payload-display">
+{
+  "swap_id": "sw-8941",
+  "tenant_id": "freshbowl",
+  "shift": {
+    "shift_id": "sh-5520",
+    "start_time": "2026-10-24T16:00:00Z",
+    "end_time": "2026-10-24T23:00:00Z",
+    "duration_hours": 7.0,
+    "station_required": "Grill & Line Cook"
+  },
+  "requester": { "staff_id": "usr-104-rs", "role": "Line Cook" },
+  "acceptor": { "staff_id": "usr-104-av", "role": "Line Cook", "current_weekly_hours": 32.0 }
+}
+                                </div>
+                                <button class="btn btn--primary btn--block" id="btn-api-execute" onclick="executeApiTest()">
+                                    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9-5.5-9-5.5z"/></svg>
+                                    Execute Live API Request
+                                </button>
+                            </div>
+
+                            <!-- Right: Response Details -->
+                            <div class="api-col api-col--res">
+                                <div class="api-res-header">
+                                    <div class="api-res-status">
+                                        <span class="status-indicator-dot status-indicator-dot--green" id="api-res-dot"></span>
+                                        <span class="api-status-code mono" id="api-res-status">HTTP 200 OK</span>
+                                    </div>
+                                    <div class="api-latency mono" id="api-res-latency">Latency: 138ms</div>
+                                </div>
+                                <div class="api-section-label">RESPONSE HEADERS</div>
+                                <div class="api-code-block mono api-headers-box" id="api-res-headers">
+x-shiftwell-eval-time: 138ms
+x-rule-version: engine-v2.4
+x-idempotency-status: SAVED
+content-type: application/json; charset=utf-8
+                                </div>
+                                <div class="api-section-label">RESPONSE BODY (JSON)</div>
+                                <div class="api-code-block mono api-res-body" id="api-res-body">
+{
+  "status": "APPROVED",
+  "resolution": "AUTO_APPROVED",
+  "latency_ms": 138,
+  "rules_evaluated": [
+    { "rule": "ROLE_MATCH", "status": "PASS", "details": "Station certified" },
+    { "rule": "OVERTIME_CAP_48H", "status": "PASS", "details": "39.0h <= 48.0h limit" },
+    { "rule": "CERTIFICATE_VALIDITY", "status": "PASS", "details": "Credentials active" }
+  ],
+  "swap_state": "CONFIRMED_IN_ROSTER",
+  "manager_interruption_prevented": true,
+  "audit_log_id": "aud-9021-fbowl-pass"
+}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Block 3: Relational Database Schema (PostgreSQL DDL) -->
+                <div class="tech-card">
+                    <div class="tech-card__header">
+                        <div class="tech-card__title-wrap">
+                            <span class="tech-card__tag">DATABASE SCHEMA (DDL)</span>
+                            <h2 class="tech-card__title">PostgreSQL Relational Architecture & Entity Constraints</h2>
+                        </div>
+                        <button class="btn btn--subtle btn--xs" onclick="copySqlSchema()">Copy PostgreSQL DDL</button>
+                    </div>
+                    <div class="tech-card__body">
+                        <div class="api-code-block mono sql-block">
+<span class="sql-kw">CREATE TABLE</span> tenants (
+    id <span class="sql-type">VARCHAR(64) PRIMARY KEY</span>,
+    name <span class="sql-type">VARCHAR(255) NOT NULL</span>,
+    segment <span class="sql-type">VARCHAR(64) NOT NULL</span>, <span class="sql-comm">-- 'restaurants', 'healthcare', 'retail'</span>
+    arr_inr <span class="sql-type">VARCHAR(32) NOT NULL</span>,
+    ot_threshold_hours <span class="sql-type">NUMERIC(4,1) DEFAULT 48.0</span>,
+    auto_approval_enabled <span class="sql-type">BOOLEAN DEFAULT TRUE</span>,
+    created_at <span class="sql-type">TIMESTAMPTZ DEFAULT NOW()</span>
+);
+
+<span class="sql-kw">CREATE TABLE</span> staff_members (
+    id <span class="sql-type">VARCHAR(64) PRIMARY KEY</span>,
+    tenant_id <span class="sql-type">VARCHAR(64) REFERENCES</span> tenants(id) <span class="sql-kw">ON DELETE CASCADE</span>,
+    name <span class="sql-type">VARCHAR(255) NOT NULL</span>,
+    role_tag <span class="sql-type">VARCHAR(128) NOT NULL</span>,
+    station_certifications <span class="sql-type">TEXT[] NOT NULL DEFAULT '{}'</span>,
+    current_week_hours <span class="sql-type">NUMERIC(4,1) NOT NULL DEFAULT 0.0</span>,
+    is_active <span class="sql-type">BOOLEAN DEFAULT TRUE</span>
+);
+
+<span class="sql-kw">CREATE TABLE</span> certifications (
+    id <span class="sql-type">VARCHAR(64) PRIMARY KEY</span>,
+    staff_id <span class="sql-type">VARCHAR(64) REFERENCES</span> staff_members(id) <span class="sql-kw">ON DELETE CASCADE</span>,
+    cert_type <span class="sql-type">VARCHAR(128) NOT NULL</span>, <span class="sql-comm">-- 'BLS_CPR', 'NURSING_COUNCIL', 'FSSAI_FOOD_SAFETY'</span>
+    expires_at <span class="sql-type">DATE NOT NULL</span>,
+    is_verified <span class="sql-type">BOOLEAN DEFAULT TRUE</span>,
+    <span class="sql-kw">CONSTRAINT</span> chk_cert_expiry <span class="sql-kw">CHECK</span> (expires_at > <span class="sql-kw">'2020-01-01'</span>)
+);
+
+<span class="sql-kw">CREATE TABLE</span> bilateral_swap_requests (
+    id <span class="sql-type">VARCHAR(64) PRIMARY KEY</span>,
+    tenant_id <span class="sql-type">VARCHAR(64) REFERENCES</span> tenants(id),
+    requester_id <span class="sql-type">VARCHAR(64) REFERENCES</span> staff_members(id),
+    acceptor_id <span class="sql-type">VARCHAR(64) REFERENCES</span> staff_members(id),
+    shift_date <span class="sql-type">DATE NOT NULL</span>,
+    shift_hours <span class="sql-type">NUMERIC(4,1) NOT NULL</span>,
+    status <span class="sql-type">VARCHAR(32) NOT NULL</span>, <span class="sql-comm">-- 'AUTO_APPROVED', 'ESCALATED', 'HARD_BLOCKED'</span>
+    idempotency_key <span class="sql-type">VARCHAR(128) UNIQUE NOT NULL</span>,
+    evaluated_at <span class="sql-type">TIMESTAMPTZ DEFAULT NOW()</span>
+);
+
+<span class="sql-kw">CREATE TABLE</span> policy_audit_logs (
+    id <span class="sql-type">BIGSERIAL PRIMARY KEY</span>,
+    swap_id <span class="sql-type">VARCHAR(64) REFERENCES</span> bilateral_swap_requests(id),
+    tenant_id <span class="sql-type">VARCHAR(64) NOT NULL</span>,
+    evaluation_trace <span class="sql-type">JSONB NOT NULL</span>,
+    latency_ms <span class="sql-type">INTEGER NOT NULL</span>,
+    logged_at <span class="sql-type">TIMESTAMPTZ DEFAULT NOW()</span>
+);
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Block 4: Concurrency & Distributed Redlock Specifications -->
+                <div class="tech-card">
+                    <div class="tech-card__header">
+                        <div class="tech-card__title-wrap">
+                            <span class="tech-card__tag">CONCURRENCY & RELIABILITY</span>
+                            <h2 class="tech-card__title">Race Condition Elimination & Idempotency Blueprint</h2>
+                        </div>
+                        <span class="mono-badge">DISTRIBUTED MUTEX</span>
+                    </div>
+                    <div class="tech-card__body">
+                        <div class="concurrency-grid">
+                            <div class="concurrency-col">
+                                <h4 class="concurrency-title">1. Preventing Shift Double-Swapping (Redis Mutex)</h4>
+                                <p>To prevent race conditions when two peers attempt to accept or swap into the same shift concurrently, the engine acquires a distributed lock on the Shift ID before rule evaluation:</p>
+                                <div class="api-code-block mono" style="font-size:12px; margin-top:8px;">
+// Acquire Distributed Lock with 5000ms TTL
+SET lock:shift:sh-5520 {uuid_token} NX EX 5
+
+if (!lock_acquired) {
+    return HTTP 409 Conflict: "Shift swap evaluation currently in progress"
+}
+// Run Policy Rules Pipeline (Role -> Overtime -> Certs)
+// Execute atomic PostgreSQL roster update
+// Release lock via Lua script verifying token ownership
+                                </div>
+                            </div>
+
+                            <div class="concurrency-col">
+                                <h4 class="concurrency-title">2. Mobile App Network Idempotency</h4>
+                                <p>Frontline staff often experience spotty Wi-Fi or cellular disconnects during dinner rushes. To prevent duplicate swap submissions:</p>
+                                <div class="api-code-block mono" style="font-size:12px; margin-top:8px;">
+// Unique Client-Generated Header
+X-Idempotency-Key: {requester_id}_{shift_id}_{timestamp_hash}
+
+// Server-side check
+if (cache.has(idempotency_key)) {
+    return cached_response; // Safe replay without re-evaluation
+}
+// Store key with 24-hour expiration window
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Block 5: Senior Engineer & Hiring Lead Direct Connect Hero -->
+                <div class="connect-hero-card">
+                    <div class="connect-hero-card__inner">
+                        <div class="connect-hero-card__left">
+                            <div class="connect-avatar">KM</div>
+                            <div class="connect-info">
+                                <div class="connect-pretitle">PRODUCT MANAGEMENT CANDIDATE · HUBSPARK CASE STUDY</div>
+                                <h2 class="connect-name">Krishna Murthi</h2>
+                                <p class="connect-bio">Technical Product Manager specializing in high-throughput SaaS platforms, distributed systems architecture, and data-driven product prioritization. Excited to collaborate with Senior Software Engineers and Tech Leads to turn business problems into resilient software platforms.</p>
+                                <div class="connect-tags">
+                                    <span class="connect-tag">Product Strategy</span>
+                                    <span class="connect-tag">Distributed Systems</span>
+                                    <span class="connect-tag">API Design</span>
+                                    <span class="connect-tag">Enterprise SaaS</span>
+                                    <span class="connect-tag">Unit Economics</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="connect-hero-card__right">
+                            <button class="btn btn--primary btn--lg btn--block" onclick="openConnectModal()">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h11A1.5 1.5 0 0 1 15 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 3.5l6.5 5 6.5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+                                Connect with Krishna
+                            </button>
+                            <a href="https://github.com/krishnamurthi-ramesh/shiftwell-prototype" target="_blank" rel="noopener" class="btn btn--subtle btn--lg btn--block">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                                View GitHub Source Code
+                            </a>
+                            <a href="../Shiftwell_Product_Intern_Case_Study_Submission.pdf" download target="_blank" class="btn btn--outline btn--lg btn--block">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v9M4 7l4 4 4-4M2 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                Download Executive Memo PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
         </div>
     </main>
+
+    <!-- ============ CONNECT MODAL ============ -->
+    <div class="modal-backdrop" id="connect-modal" onclick="closeConnectModal(event)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <div class="modal-card__header">
+                <div class="modal-card__title-wrap">
+                    <span class="mono-badge">PM CANDIDATE CONTACT</span>
+                    <h3 class="modal-card__title">Connect with Krishna Murthi</h3>
+                </div>
+                <button class="modal-close-btn" onclick="closeConnectModal()" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-card__body">
+                <p class="modal-intro">Thank you for reviewing the Shiftwell Case Study. I would be thrilled to discuss this architecture, my product trade-off rationale, or collaborate with your engineering and product teams.</p>
+                
+                <div class="contact-links-grid">
+                    <a href="https://github.com/krishnamurthi-ramesh/shiftwell-prototype" target="_blank" rel="noopener" class="contact-link-card">
+                        <div class="contact-icon github-icon">
+                            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                        </div>
+                        <div class="contact-meta">
+                            <span class="contact-title">GitHub Repository</span>
+                            <span class="contact-sub">Source code & commit trajectory</span>
+                        </div>
+                    </a>
+
+                    <a href="https://www.figma.com/board/OJXSOr8Sc4iL8QuREGRVgK/Bilateral-Swap-Policy-Engine-Flow?node-id=9-69" target="_blank" rel="noopener" class="contact-link-card">
+                        <div class="contact-icon figma-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/></svg>
+                        </div>
+                        <div class="contact-meta">
+                            <span class="contact-title">FigJam Architecture Board</span>
+                            <span class="contact-sub">Node 9:69 state machine</span>
+                        </div>
+                    </a>
+
+                    <a href="https://elaborate-parfait-1cc881.netlify.app/" target="_blank" rel="noopener" class="contact-link-card">
+                        <div class="contact-icon netlify-icon">
+                            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l7 4v6l-7 4-7-4V5l7-4z"/></svg>
+                        </div>
+                        <div class="contact-meta">
+                            <span class="contact-title">Live Prototype</span>
+                            <span class="contact-sub">Netlify edge deployment v2.4</span>
+                        </div>
+                    </a>
+
+                    <a href="../Shiftwell_Product_Intern_Case_Study_Submission.pdf" download target="_blank" class="contact-link-card">
+                        <div class="contact-icon pdf-icon">
+                            <svg width="20" height="20" viewBox="0 0 16 16" fill="none"><path d="M8 1v9M4 7l4 4 4-4M2 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div class="contact-meta">
+                            <span class="contact-title">Executive Memo (PDF)</span>
+                            <span class="contact-sub">Single 4-page audited document</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="modal-footer-action">
+                    <button class="btn btn--primary btn--block btn--lg" onclick="copyContactEmail()">
+                        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h11A1.5 1.5 0 0 1 15 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 3.5l6.5 5 6.5-5" stroke="currentColor" stroke-width="1.4"/></svg>
+                        Copy Candidate Email
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ============ ENTERPRISE FOOTER ============ -->
     <footer class="app-footer">
