@@ -114,7 +114,7 @@
 
 \vspace{1mm}
 \noindent
-\begin{tabularx}{\textwidth}{@{}lXl>{\raggedright\arraybackslash}p{7.2cm}@{}}
+\begin{tabularx}{\textwidth}{@{}lXl>{\raggedright\arraybackslash}p{6.6cm}@{}}
 \textbf{TO:} & Chief Executive Officer, Shiftwell & \textbf{DATE:} & October 18, 2026 \\
 \textbf{FROM:} & Krishna Murthi, Product Management & \textbf{SUBJECT:} & Q4 Engineering Build: What to Ship, Defer, and Why
 \end{tabularx}
@@ -155,7 +155,7 @@ Instead of three bespoke, disconnected features, I recommend engineering a singl
 \midrule
 \textbf{1. Role \& Skill Match} & Verifies swapper qualification, station certification, and role matrix. & FreshBowl + all restaurant/retail accounts & Core Engine \\
 \textbf{2. Overtime Threshold} & Automatically escalates to Regional Manager if weekly hours exceed 48 hrs. & UrbanMart (\INR 110L ARR) + labor compliance & Core Engine \\
-\textbf{3. Certificate Validity} & Hard-blocks swaps if mandatory credentials (e.g., BLS, Nursing Council) lapse. & CarePoint (\INR 60L ARR) + clinical safety & 1 Sprint \\
+\textbf{3. Certificate Validity} & Prevents scheduling or swaps involving staff whose mandatory credentials have expired. & CarePoint (\INR 60L ARR) + clinical safety & 1 Sprint \\
 \textbf{4. Auto-Approve on Pass} & Instantly approves eligible swaps in <200ms; sends digest summary to managers. & Portfolio-wide ($\sim$75\% swaps automated) & Core Engine \\
 \bottomrule
 \end{tabularx}
@@ -180,7 +180,7 @@ Instead of three bespoke, disconnected features, I recommend engineering a singl
     \item \textbf{A Scalable Platform vs. Fragile Tech Debt:}
     Building custom one-offs for UrbanMart and CarePoint creates maintenance liabilities. A rules engine is a reusable architecture: any enterprise customer can configure customized rules (e.g., rest periods, union seniority, minor labor laws) in future quarters.
     \item \textbf{Built-in 2-Sprint Safety Buffer:}
-    Building 3 disparate features consumes 6/6 sprints (100\% capacity). With the engineering lead on leave until next week, zero buffer guarantees slips and poor QA. Our plan consumes 4 sprints, preserving 2 full sprints for integration testing, edge cases, and pilot rollouts.
+    Building all three custom features would consume the full six-sprint capacity, leaving no contingency for unplanned work and increasing delivery and quality-assurance risk. Our plan consumes 4 sprints, preserving 2 full sprints for integration testing, edge cases, and pilot rollouts.
 \end{enumerate}
 
 \subsection*{4. What We Will NOT Build This Quarter (and Why)}
@@ -199,7 +199,7 @@ Instead of three bespoke, disconnected features, I recommend engineering a singl
     \item \textbf{CarePoint Clinics (\INR 60L ARR \textbar\ Healthcare \textbar\ Dec 2026 Renewal):}
     \textit{``We are addressing your regulatory audit exposure directly. We are committing Q4 engineering capacity to ship an integrated Certificate Expiry Enforcement Module that hard-blocks staff with expired BLS or Council credentials from scheduling or swapping, replacing manual spreadsheet tracking with automated system guardrails.''}
     \item \textbf{UrbanMart (\INR 110L ARR \textbar\ Retail \textbar\ Aug 2027 Renewal):}
-    \textit{``We are building the overtime governance controls you requested. Our Q4 Rules Engine build will introduce a configurable 48-hour weekly cap that automatically routes breaching swaps to Regional Managers for 1-click authorization with overtime cost projections.''}
+    \textit{``We are building the overtime governance controls you requested. Our Q4 Rules Engine build will introduce a configurable 48-hour weekly cap that automatically routes breaching swaps to Regional Managers for 1-click authorization.''}
 \end{itemize}
 
 \subsection*{6. Decision Summary}
@@ -308,9 +308,9 @@ Engineered with semantic HTML5, Stripe/Linear-inspired high-contrast executive C
 \begin{neutralcard}
 \footnotesize
 \begin{itemize}
-    \item \textbf{AI Platform Used:} Claude 3.5 Sonnet \& Claude 3.7 Sonnet via Google Antigravity IDE.
-    \item \textbf{Audit \& Trajectory Link:} Full commit history and prompt documentation are archived at \href{https://github.com/krishnamurthi-ramesh/shiftwell-prototype/tree/main}{\bfseries\color{LinkBlue}github.com/krishnamurthi-ramesh/shiftwell-prototype} (\texttt{bd59fb1d-afe5-4395-9774-546bae41f5a1}).
-    \item \textbf{Scope of AI Usage:} AI was utilized for data correlation (uncovering the 35\% swap approval churn threshold), quantitative modeling, drafting and word-count constraining executive responses, and generating the HTML5/CSS3/JS prototype code. Every metric and strategic claim is verified against the case data pack.
+    \item \textbf{Claude 3.5 \& 3.7 Sonnet (via Google Antigravity):} Assisted with prototype development, quantitative modeling, and exploring architectural trade-offs.
+    \item \textbf{ChatGPT:} Assisted with reviewing the recommendation document, checking numerical consistency, identifying unsupported claims, and refining the FigJam policy-flow diagram.
+    \item \textbf{Audit \& Trajectory Link:} Prompt transcripts and commit history are archived at \href{https://github.com/krishnamurthi-ramesh/shiftwell-prototype}{\bfseries\color{LinkBlue}github.com/krishnamurthi-ramesh/shiftwell-prototype}. All assumptions, calculations, product decisions, and implementation choices remain the candidate's work and will be explained in person during the interview.
 \end{itemize}
 \end{neutralcard}
 
