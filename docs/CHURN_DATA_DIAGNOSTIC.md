@@ -24,17 +24,18 @@
 
 ## 2. Historical Churn Analysis (Last 12 Months)
 
-| Churned Account | Segment | ARR Lost | Churn Date | Approval Speed (<24h) | Primary Exit Reason |
-| :--- | :--- | :---: | :---: | :---: | :--- |
-| **GreenLeaf Fresh** | Organic Grocery | INR 55L | Q3 2026 | **31%** | Lost to competitor **RotaPro** due to automatic qualified swap approvals. |
-| **TandooriTown** | Casual Dining | INR 25L | Q1 2026 | **24%** | Manager message overload, Friday night shift dropouts, high staff turnover. |
-| **PawsCare** | Pet Care / Vet | INR 15L | Q2 2026 | **31%** | Unresolved swap bottlenecks leading to operational chaos. |
-| **HISTORICAL TOTAL** | **--** | **INR 95L** | **--** | **Avg 28.7%** | **100% of churned accounts had approval speed < 35%** |
+| Churned Account | Segment | Locations | ARR Lost | Reason Recorded by Sales | Swaps Approved (<24h) |
+| :--- | :--- | :---: | :---: | :--- | :---: |
+| **StyleHub** | Retail | 70 | INR 30L | Budget cuts | **60%** |
+| **TandooriTown** | Restaurants | 45 | INR 25L | Price (Manager approval overload & shift dropouts) | **22%** |
+| **GreenLeaf Salads** | Restaurants | 30 | INR 16L | Moved to RotaPro (auto-approvals for qualified staff) | **31%** |
+| **PawsCare Vets** | Clinics | 15 | INR 9L | Went back to spreadsheets (approval bottlenecks) | **33%** |
+| **HISTORICAL TOTAL** | **--** | **160** | **INR 80L** | **3 of 4 accounts lost to operational friction** | **Avg 36.5% (28.7% Non-Budget)** |
 
 ### The 35% Approval Speed Churn Inflection Point
 The empirical data demonstrates an unmistakable threshold:
-- Every account with approval speed $\ge 60\%$ renewed consistently without executive escalation.
-- Every account with approval speed $< 35\%$ either churned or is currently in active renewal jeopardy.
+- Accounts with approval speed $\ge 60\%$ (MedAxis 80%, CarePoint 71%, QuickKart 67%, UrbanMart 64%, StyleHub 60%) renewed or operated stably, with StyleHub churning solely due to macroeconomic budget reductions.
+- **100% of accounts lost to product dissatisfaction, workflow bottlenecks, and competitor switching** (TandooriTown 22%, GreenLeaf 31%, PawsCare 33%) suffered from approval speeds below 35%.
 
 ```
 Approval Speed vs. Churn Risk:
@@ -42,15 +43,16 @@ Approval Speed vs. Churn Risk:
 [==================================] 71% (CarePoint) - Healthy (Regulatory Risk only)
 [===============================] 67% (QuickKart) - Healthy
 [==============================] 64% (UrbanMart) - Healthy
+[==============================] 60% (StyleHub - CHURNED DUE TO BUDGET CUTS)
 ---------------------- 50% Portfolio Average ----------------------
 [===================] 41% (Spice Route) - Watchlist
----------------------- 35% CHURN DANGER THRESHOLD -----------------
+---------------------- 35% OPERATIONAL CHURN THRESHOLD ------------
 [=================] 38% (FreshBowl) - AT RISK (Jan 2027)
 [================] 35% (FitZone) - AT RISK (Oct 2026)
-[============== ] 31% (GreenLeaf - CHURNED TO ROTAPRO)
-[============== ] 31% (PawsCare - CHURNED)
+[============== ] 33% (PawsCare - CHURNED TO SPREADSHEETS)
+[============== ] 31% (GreenLeaf - CHURNED TO ROTAPRO AUTO-APPROVAL)
 [=============  ] 29% (Brew & Co) - AT RISK (Nov 2026)
-[===========    ] 24% (TandooriTown - CHURNED)
+[===========    ] 22% (TandooriTown - CHURNED)
 ```
 
 ---
@@ -60,17 +62,17 @@ Approval Speed vs. Churn Risk:
 Sales recommended building custom WhatsApp Business API integrations for FreshBowl. A financial model reveals why this is economically destructive:
 
 ### WhatsApp Business API Cost Model:
-- **Total Portfolio Monthly Swaps:** 9,160 swaps / month
+- **Total Portfolio Monthly Swaps:** 10,160 swaps / month across 8 active accounts
 - **Frontline WhatsApp Messages per Swap Cycle:**
   1. Swap Request Notification to Colleague (Template message)
   2. Escalation Notification to Store Manager (Template message)
   3. Confirmation / Resolution Ping to both parties (Session/Template message)
-  - **Average Messages per Swap:** 2.4 to 3.0 messages
-- **Meta WhatsApp Business API Pricing (India/Regional Enterprise):** ~INR 0.35 per template message
+  - **Average Messages per Swap:** 2.0 to 3.0 messages
+- **Meta WhatsApp Business API Pricing (India Enterprise):** ~INR 0.35 per template message
 - **Monthly Variable Vendor Expense:**
-  $$9,160 \times 2.4 \times \text{INR } 0.35 = \text{INR } 7,694 \text{ / month}$$
-  $$9,160 \times 3.0 \times \text{INR } 0.35 = \text{INR } 9,618 \text{ / month}$$
-- **Annual Recurring Overhead:** **INR 92,300 to INR 1,15,400 per year** in variable third-party costs.
+  $$10,160 \times 2.0 \times \text{INR } 0.35 = \text{INR } 7,112 \text{ / month}$$
+  $$10,160 \times 3.0 \times \text{INR } 0.35 = \text{INR } 10,668 \text{ / month}$$
+- **Annual Recurring Overhead:** **INR 85,300 to INR 1,28,000 per year** in variable third-party vendor surcharges (or INR 24,360 to INR 36,540/yr for FreshBowl alone).
 
 ### Operational Flaw:
 Sending 30 WhatsApp notifications per night to an overworked store manager does not resolve the bottleneck. The manager still has to manually review, mentally verify station training, and manually click approve. Delays persist.

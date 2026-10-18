@@ -23,9 +23,9 @@ $$\text{Leading Indicator of Churn} = \text{Manager Approval Speed (<24 hours)}$
 
 - **Healthy Accounts** (UrbanMart, QuickKart, MedAxis): **70%** of swaps approved in <24 hours (manager workload: 2.5–3.5 hrs/wk).
 - **At-Risk Accounts** (FreshBowl, CarePoint, FitZone, Brew & Co): Only **34%** of swaps approved in <24 hours (manager workload: 5.5–7.0 hrs/wk).
-- **Churned Accounts** (TandooriTown 24%, GreenLeaf 31%, PawsCare 31%): Averaged **28.7%** approval speed.
+- **Operationally Churned Accounts** (TandooriTown 22%, GreenLeaf 31%, PawsCare 33%): Averaged **28.7%** approval speed (<35%). StyleHub (60% approval, INR 30L ARR) churned solely due to corporate budget cuts.
 
-> **Why Competitor RotaPro Won GreenLeaf (INR 55L ARR):**  
+> **Why Competitor RotaPro Won GreenLeaf (INR 16L ARR):**  
 > *"Honestly it wasn't WhatsApp. Our managers couldn't keep up with approvals, and RotaPro let swaps go through automatically if the person was trained."*
 
 WhatsApp merely relocates a manual queue of 30 notifications per night from mobile app to chat; it does nothing to clear the bottleneck.
@@ -41,7 +41,7 @@ Instead of building 3 disparate, brittle one-offs that consume 100% of capacity 
    - **1 Sprint:** Clinical Certificate Enforcement Module (secures CarePoint's INR 60L Dec renewal).
    - **2 Sprints Buffer:** Preserved for QA, edge cases, integration testing, and pilot rollouts.
 2. **Defer WhatsApp to Q1 2027:** Re-evaluate strictly as an escalation notification channel once routine swaps are auto-resolved.
-3. **Economics:** Protects **INR 1.84 Cr in at-risk ARR**, cuts manager administrative load by **~65%**, and avoids **INR 76,900–INR 1,15,400/yr** in variable WhatsApp API surcharges.
+3. **Economics:** Protects **INR 1.84 Cr in at-risk ARR**, cuts manager administrative load by **~65%**, and avoids **INR 85,300–INR 1,28,000/yr** in variable WhatsApp API surcharges across 10,160 monthly swaps.
 
 ---
 
