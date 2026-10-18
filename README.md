@@ -1,7 +1,7 @@
 # Shiftwell: Rules-Based Auto-Approval Engine
 ### HugoHub / Hubspark Product Management Intern Case Study (2026–2027)
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live%20on%20Netlify-0284c7?style=for-the-badge&logo=netlify)](https://elaborate-parfait-1cc881.netlify.app/)
+[![Live Demo](https://img.shields.io/badge/Demo-Live%20on%20Netlify-0284c7?style=for-the-badge&logo=netlify)](https://6ad4fc1fce522192bad9bf17--elaborate-parfait-1cc881.netlify.app/)
 [![Master PDF](https://img.shields.io/badge/Master%20PDF-Executive%20Submission-166534?style=for-the-badge&logo=adobe-acrobat-reader)](./Shiftwell_Product_Intern_Case_Study_Submission.pdf)
 [![Figma Flow](https://img.shields.io/badge/Figma-Architecture%20Flow-F24E1E?style=for-the-badge&logo=figma)](https://www.figma.com/board/OJXSOr8Sc4iL8QuREGRVgK/Bilateral-Swap-Policy-Engine-Flow?node-id=0-1&t=EnDYpO8RW1CuIzIn-1)
 [![PRD](https://img.shields.io/badge/Product-PRD%20Specification-6366f1?style=for-the-badge&logo=readme)](./docs/PRD_Rules_Engine.md)
@@ -53,7 +53,7 @@ Instead of building 3 disparate, brittle one-offs that consume 100% of capacity 
 | 🎨 **Figma Architecture & Policy Flow** | Interactive visual whiteboard modeling bilateral swap state transitions, policy rule evaluation sequence, and manager escalation workflows. | [**Open Figma Board**](https://www.figma.com/board/OJXSOr8Sc4iL8QuREGRVgK/Bilateral-Swap-Policy-Engine-Flow?node-id=0-1&t=EnDYpO8RW1CuIzIn-1) |
 | 📋 **Product Requirements Document (PRD)** | Industry-standard PRD detailing user personas, functional specifications, rule precedence hierarchy, and release milestones. | [**View PRD**](./docs/PRD_Rules_Engine.md) |
 | 📊 **Quantitative Churn & Economic Model** | Deep dive into portfolio metrics, churn inflection threshold (<35%), and WhatsApp unit economics. | [**View Diagnostic**](./docs/CHURN_DATA_DIAGNOSTIC.md) |
-| 🚀 **Live Deployed Web Application** | Production-grade B2B SaaS prototype built with semantic HTML5, Linear/Stripe design tokens, and sub-millisecond execution. | [**Launch Prototype**](https://elaborate-parfait-1cc881.netlify.app/) |
+| 🚀 **Live Deployed Web Application** | Production-grade B2B SaaS prototype built with semantic HTML5, Linear/Stripe design tokens, and sub-millisecond execution. | [**Launch Prototype**](https://6ad4fc1fce522192bad9bf17--elaborate-parfait-1cc881.netlify.app/) |
 | 📑 **LaTeX Source Code** | Clean, scalable LaTeX source compiled with scalable Latin Modern typography and microtype kerning. | [**View Source**](./Shiftwell_Product_Intern_Case_Study_Submission.tex) |
 
 ---
