@@ -16,13 +16,14 @@
 2. **UrbanMart (INR 110L ARR, Aug 2027 Renewal):** Demanded a custom 48-hour overtime restriction.
 3. **CarePoint Clinics (INR 60L ARR, Dec 2026 Renewal):** Demanded clinical certification tracking.
 
-### The Diagnostic: Approval Latency Drives Churn, Not Communication Channels
-A comprehensive audit of customer transcripts, exit interviews, and historical churn data revealed the fundamental truth:
+### The Diagnostic: Approval Latency as a Churn Signal, Not Communication Channels
+A comprehensive audit of customer transcripts, exit interviews, and historical churn data revealed the operational pattern:
 
-$$\text{Leading Indicator of Churn} = \text{Manager Approval Speed (<24 hours)}$$
+$$\text{Strong Operational Risk Signal} = \text{Chronic Swap Approval Delays (<35\% resolved in <24 hours)}$$
 
-- **Healthy Accounts** (UrbanMart, QuickKart, MedAxis): **70%** of swaps approved in <24 hours (manager workload: 2.5–3.5 hrs/wk).
-- **At-Risk Accounts** (FreshBowl, CarePoint, FitZone, Brew & Co): Only **34%** of swaps approved in <24 hours (manager workload: 5.5–7.0 hrs/wk).
+- **Healthy Accounts** (UrbanMart 64%, QuickKart 67%, MedAxis 80%): Average **70%** of swaps approved in <24 hours (manager workload: 2.5–3.5 hrs/wk).
+- **At-Risk Approval Bottleneck Accounts** (FreshBowl 38%, FitZone 35%, Brew & Co 29%): Average only **34%** of swaps approved in <24 hours (manager workload: 5.5–7.0 hrs/wk).
+- **CarePoint Clinics (71% approval, 4.0 hrs/wk):** At risk separately due to statutory regulatory audit compliance (uncredentialed nurse shifts), not approval latency.
 - **Operationally Churned Accounts** (TandooriTown 22%, GreenLeaf 31%, PawsCare 33%): Averaged **28.7%** approval speed (<35%). StyleHub (60% approval, INR 30L ARR) churned solely due to corporate budget cuts.
 
 > **Why Competitor RotaPro Won GreenLeaf (INR 16L ARR):**  
@@ -36,12 +37,12 @@ WhatsApp merely relocates a manual queue of 30 notifications per night from mobi
 
 Instead of building 3 disparate, brittle one-offs that consume 100% of capacity with 0 contingency:
 
-1. **Build a Reusable Rules-Based Auto-Approval Engine (4 Sprints Total):**
-   - **3 Sprints:** Core Rules Engine (Role & station match, 48h overtime threshold, and instant <200ms auto-approval).
-   - **1 Sprint:** Clinical Certificate Enforcement Module (secures CarePoint's INR 60L Dec renewal).
+1. **Build a Reusable Rules-Based Auto-Approval Engine (4 Sprints Proposed):**
+   - **3 Sprints:** Core Rules Engine (Role & station match, 48h overtime threshold, and instant auto-approval; candidate planning assumption subject to engineering lead sizing).
+   - **1 Sprint:** Clinical Certificate Enforcement Module (targets CarePoint's INR 60L Dec renewal regulatory exposure).
    - **2 Sprints Buffer:** Preserved for QA, edge cases, integration testing, and pilot rollouts.
 2. **Defer WhatsApp to Q1 2027:** Re-evaluate strictly as an escalation notification channel once routine swaps are auto-resolved.
-3. **Economics:** Protects **INR 1.84 Cr in at-risk ARR**, cuts manager administrative load by **~65%**, and avoids **INR 85,300–INR 1,28,000/yr** in variable WhatsApp API surcharges across 10,160 monthly swaps.
+3. **Economics & Retention:** Aims to address churn risk across **INR 1.84 Cr in exposed renewal ARR**, targets reducing frontline manager routine scheduling burden by **~65%** (to be validated in pilot), and avoids an estimated **INR 85,300–INR 1,28,000/yr** in variable WhatsApp API surcharges across 10,160 monthly swaps.
 
 ---
 
@@ -49,11 +50,11 @@ Instead of building 3 disparate, brittle one-offs that consume 100% of capacity 
 
 | Document / Artifact | Description | Link |
 | :--- | :--- | :--- |
-| 📄 **Executive Memo to CEO & Brief Deliverables** | 4-page master LaTeX document covering the CEO Memo (strictly 2 pages), Reply to Sales Head (184 words), Assumptions List, and Build Note. | [**View Master PDF**](./Shiftwell_Product_Intern_Case_Study_Submission.pdf) |
+| 📄 **Executive Memo to CEO & Brief Deliverables** | 4-page master LaTeX document covering the CEO Memo (strictly 2 pages), Reply to Sales Head (190 words), Assumptions List, and Build Note. | [**View Master PDF**](./Shiftwell_Product_Intern_Case_Study_Submission.pdf) |
 | 🎨 **Figma Architecture & Policy Flow** | Interactive visual whiteboard modeling bilateral swap state transitions, policy rule evaluation sequence, and manager escalation workflows. | [**Open Figma Board**](https://www.figma.com/board/OJXSOr8Sc4iL8QuREGRVgK/Bilateral-Swap-Policy-Engine-Flow?node-id=0-1&t=EnDYpO8RW1CuIzIn-1) |
-| 📋 **Product Requirements Document (PRD)** | Industry-standard PRD detailing user personas, functional specifications, rule precedence hierarchy, and release milestones. | [**View PRD**](./docs/PRD_Rules_Engine.md) |
+| 📋 **Product Requirements Document (PRD)** | Detailed PRD covering user personas, functional specifications, data dependencies, and safe fallback rules. | [**View PRD**](./docs/PRD_Rules_Engine.md) |
 | 📊 **Quantitative Churn & Economic Model** | Deep dive into portfolio metrics, churn inflection threshold (<35%), and WhatsApp unit economics. | [**View Diagnostic**](./docs/CHURN_DATA_DIAGNOSTIC.md) |
-| 🚀 **Live Deployed Web Application** | Production-grade B2B SaaS prototype built with semantic HTML5, Linear/Stripe design tokens, and sub-millisecond execution. | [**Launch Prototype**](https://6ad4fc1fce522192bad9bf17--elaborate-parfait-1cc881.netlify.app/) |
+| 🚀 **Live Deployed Web Application** | Interactive client-side simulation prototype built with semantic HTML5, Linear/Stripe design tokens, and realistic 80–180ms simulated API latencies. | [**Launch Prototype**](https://6ad4fc1fce522192bad9bf17--elaborate-parfait-1cc881.netlify.app/) |
 | 📑 **LaTeX Source Code** | Clean, scalable LaTeX source compiled with scalable Latin Modern typography and microtype kerning. | [**View Source**](./Shiftwell_Product_Intern_Case_Study_Submission.tex) |
 
 ---

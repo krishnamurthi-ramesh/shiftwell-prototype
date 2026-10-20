@@ -5,8 +5,8 @@
 | **Product** | Shiftwell Enterprise Workforce Management |
 | **Feature / Epic** | Rules-Based Auto-Approval Engine & Compliance Safeguards |
 | **Author** | Krishna Murthi (Product Management Intern Candidate) |
-| **Target Release** | Q4 2026 (Sprints 1–4 Build, Sprints 5–6 Hardening Buffer) |
-| **Status** | Approved for Engineering Implementation |
+| **Target Release** | Q4 2026 (Sprints 1–4 Proposed Build, Sprints 5–6 Hardening Buffer) |
+| **Status** | Candidate Proposed Specification (Subject to Engineering Lead Validation) |
 | **Target Accounts** | FreshBowl (INR 84L), CarePoint Clinics (INR 60L), UrbanMart (INR 110L), Portfolio-wide |
 
 ---
@@ -21,10 +21,11 @@ Shiftwell is a multi-tenant B2B SaaS platform managing hourly workforce scheduli
 
 ### 1.2 The Core Diagnosis & "Why Not WhatsApp?"
 Sales recommended building all 3 requested custom features (consuming 6/6 sprints, 100% engineering capacity). However, an empirical audit of customer interview logs and churn records reveals:
-- **Root Cause:** Existential churn risk correlates directly with **manager approval latency**, not delivery channels.
+- **Root Cause Risk Signal:** Existential churn risk strongly correlates with **manager approval latency**, not delivery channels.
   - Accounts with **>60%** swaps approved within 24 hours are **Healthy** (UrbanMart 64%, QuickKart 67%, MedAxis 80%).
-  - Accounts with **<40%** swaps approved within 24 hours are **At Risk** or have **Churned** (FreshBowl 38%, CarePoint 71% with audit risk, FitZone 35%, Brew & Co 29%, Churned Average 28.7%).
-- **Why Competitor RotaPro Won GreenLeaf (INR 55L ARR):** GreenLeaf’s exit interview explicitly confirmed:
+  - The three accounts suffering from acute approval bottlenecks (FreshBowl 38%, FitZone 35%, Brew & Co 29%) average only **34%** approval speed within 24 hours (manager workload: 5.5–7.0 hrs/wk).
+  - CarePoint Clinics (71% approval speed, 4.0 hrs/wk) is at risk separately due to **regulatory audit exposure** (uncredentialed shifts), not approval latency.
+- **Why Competitor RotaPro Won GreenLeaf (INR 16L ARR):** GreenLeaf’s exit interview explicitly confirmed:
   > *"Honestly it wasn't WhatsApp. Our managers couldn't keep up with approvals, and RotaPro let swaps go through automatically if the person was trained."*
 - **WhatsApp Fallacy:** WhatsApp is a message conduit, not a decision engine. Routing 30 notifications per night to an overwhelmed store manager on WhatsApp does not eliminate the bottleneck; it merely relocates burnout to personal chat.
 
@@ -33,20 +34,21 @@ Sales recommended building all 3 requested custom features (consuming 6/6 sprint
 ## 2. Strategic Objectives & Success Metrics
 
 ### 2.1 Objectives
-1. **Neutralize Root-Cause Churn:** Protect **INR 1.84 Cr** in at-risk renewal ARR (FreshBowl, CarePoint, FitZone, Brew & Co).
-2. **Eliminate Operational Drag:** Reduce store manager scheduling time from **4.75 hrs/week down to ~1.65 hrs/week** (~65% reduction).
-3. **Beat RotaPro on Architecture:** Deliver an automated rules engine without incurring recurring WhatsApp Business API fees (saving INR 76,900–INR 1,15,400 annually).
-4. **Preserve Engineering Buffer:** Build the core engine in **4 sprints**, reserving **2 full sprints** for integration testing, edge cases, and pilot rollouts.
+1. **Address At-Risk Portfolio Churn:** Address operational gridlock and regulatory audit risk across **INR 1.84 Cr** in exposed renewal ARR (FreshBowl, CarePoint, FitZone, Brew & Co). Note: This represents exposed ARR requiring retention intervention, not guaranteed revenue saved.
+2. **Reduce Operational Friction:** Target reducing store manager routine scheduling burden (FreshBowl baseline: 6.5 hrs/wk), aiming for ~4.2 hrs/wk saved as a pilot hypothesis.
+3. **Neutralize Competitor Moat:** Deliver an automated rules engine without incurring recurring WhatsApp Business API fees (saving an estimated INR 85,300–INR 1,28,000 annually across 10,160 monthly swaps).
+4. **Preserve Engineering Buffer:** Target shipping the unified engine in **4 sprints**, preserving **2 full sprints** for integration testing, edge cases, and pilot rollouts (subject to engineering lead sizing).
 
 ### 2.2 Key Performance Indicators (KPIs)
 
-| Metric Type | Metric Name | Current Baseline | Target Post-Launch |
+| Metric Type | Metric Name | Current Baseline | Target Post-Launch (Pilot Hypothesis) |
 | :--- | :--- | :--- | :--- |
-| **North Star** | **Swap Approval Speed (<24h)** | 49% Portfolio Avg (34% At-Risk) | **> 75% Instant (<200ms)** |
-| **Business Impact** | At-Risk ARR Renewals | INR 1.84 Cr at risk | **100% Renewal Retention** |
-| **Operational** | Manager Weekly Scheduling Load | 4.75 hrs/wk (6.5h at FreshBowl) | **< 1.75 hrs/wk (-65%)** |
+| **Operational Primary** | **Swap Approval Speed (<24h)** | 49% Portfolio Avg (34% high-friction avg) | **> 70% resolved in <24h** |
+| **Automation Target** | **Routine Auto-Approval Share** | 0% (All swaps manual) | **Targeting up to 75% instant (<200ms)** |
+| **Retention Goal** | At-Risk ARR Retention | INR 1.84 Cr exposed across 4 accounts | **Maximize renewal retention with CS alignment** |
+| **Workload Hypothesis** | Manager Weekly Scheduling Load | 4.75 hrs/wk avg (6.5h at FreshBowl) | **Target ~4.2 hrs/wk reduction at FreshBowl** |
 | **Quality & Compliance** | Uncredentialed Clinical Shifts Covered | 2 shifts flagged (CarePoint) | **0 (Hard-blocked by engine)** |
-| **Platform** | P95 Evaluation Latency | N/A (14–24 hours manual) | **< 200 milliseconds** |
+| **Engine Performance** | Evaluation Latency | N/A (14–24 hours manual sign-off) | **< 200ms simulated / local worker** |
 
 ---
 
@@ -144,8 +146,27 @@ $$\text{Hard-Block (Regulatory)} \longrightarrow \text{Escalate (Labor Cost)} \l
 ## 7. Account-by-Account Stakeholder Communication Plan
 
 - **FreshBowl (INR 84L ARR, Jan 2027 Renewal):**
-  > *"We heard your frontline feedback loud and clear. WhatsApp still forces your store managers to review 30 approvals every night. Instead, we are shipping instant Auto-Approval for trained station cooks. Your managers won't have to touch 80% of requests. Swaps resolve in seconds, cooks don't drop shifts, and your managers get back 5 hours every week."*
+  > *"We investigated your frontline feedback. WhatsApp still leaves store managers with dozens of manual approvals. Instead, our Q4 engineering commitment is instant Auto-Approval for trained station staff. By targeting automation of roughly 75% of routine requests, we project saving managers ~4.2 hours weekly (a ~65% reduction from their current 6.5 hrs/week), aiming to reduce shift dropouts and speed up coverage during peak dinner rushes, subject to validation in our upcoming store pilot."*
 - **CarePoint Clinics (INR 60L ARR, Dec 2026 Renewal):**
-  > *"Your regulatory vulnerability is solved. We are shipping an integrated Certificate Expiry Enforcement Module this quarter. Any nurse with an expired BLS or Council registration is automatically blocked from scheduling or swapping. Your clinic managers no longer need manual Excel sheets, and audit penalties are 100% eliminated."*
+  > *"We are addressing your regulatory audit exposure directly. We are committing Q4 engineering capacity to ship an integrated Certificate Expiry Enforcement Module that hard-blocks staff with expired BLS or Council credentials from scheduling or swapping, replacing manual spreadsheet tracking with automated system guardrails."*
 - **UrbanMart (INR 110L ARR, Aug 2027 Renewal):**
-  > *"Your overtime cost control is delivered. Our new Rules Engine allows you to enforce your 48-hour weekly cap. Any swap breaching 48 hours is instantly flagged and escalated to Regional Managers for 1-click authorization with overtime cost projections."*
+  > *"We are building the overtime governance controls you requested. Our Q4 Rules Engine build will introduce a configurable 48-hour weekly cap that automatically routes breaching swaps to Regional Managers for 1-click authorization."*
+
+---
+
+## 8. Critical Data Dependencies, Engineering Validation & Safe Fallbacks
+
+### 8.1 Key Data Dependencies
+1. **Verified Station & Skill Records:** Auto-approval requires that individual staff station qualification records (e.g., Line Cook Station Certified) are populated and verified in the database.
+   - **Safe Fallback Policy:** If station or training data is missing, expired, or ambiguous, the engine must **never** treat it as a pass. It automatically falls back to `ROUTE_TO_LOCATION_MANAGER` for manual human evaluation.
+2. **Cumulative Weekly Hours Calculation:** Overtime threshold checks require synchronized shift duration and clock-in history.
+   - **Concurrency Safety:** Race conditions (e.g. concurrent bilateral swap submissions) are mitigated via distributed locking on the shift ID to prevent double-swapping and overtime blindspots.
+3. **Escalation Role & Permissions:** The 48h escalation desk assumes a Regional Operations Manager or Store General Manager role exists with approval authority. If undefined for an account, escalations default to the primary Account Owner / Store GM.
+
+### 8.2 Engineering Sizing Validation & Capacity Governance
+- **Core Engine Sizing (Planning Assumption):** The 3-sprint core engine estimate is a proposed candidate assumption. Prior to sprint commitment, this must be validated with the Engineering Lead.
+- **Capacity Governance & Scope Trade-offs:** If technical debt or integration discovery pushes the core engine beyond 3 sprints:
+  1. *Priority 1 (Must-Ship):* CarePoint Certificate Expiry Module (hard regulatory renewal deadline in Dec 2026).
+  2. *Priority 2 (Must-Ship):* Core Rules Framework with basic overtime hard-stop.
+  3. *Scope Deferral Option:* Defer complex multi-tier escalation dashboards or rich digest services to Q1 2027 rather than compromising the 2-sprint testing buffer.
+
